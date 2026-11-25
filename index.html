@@ -171,6 +171,19 @@ a.btn{color:var(--ink)}a.btn.pri{color:var(--on)}
 .vt td.pint{color:#111}.vt td.edt{padding:2px}.vt td.edt input{width:100%;min-width:90px;min-height:34px;border:2px solid #b5860f;border-radius:6px;background:#fff8dc;color:#111;padding:0 8px;font-size:15px;text-align:right}
 .vt tr.vazia td{height:10px;padding:0;border-left:0;border-right:0}
 .vnota{font-size:13px;color:var(--mute);margin-top:8px}
+/* cores por tema */
+:root{--topo:#1d3a2c;--topo-ink:#fff;--topo-sub:#d9a92a;--topo-bt:#d9a92a;--topo-bt-ink:#111}
+.top{background:var(--topo)!important;color:var(--topo-ink)!important;transition:background .25s}.brand span{color:var(--topo-sub)!important}.crumb span{color:var(--topo-ink)}.crumb button{background:var(--topo-bt)!important;color:var(--topo-bt-ink)!important}
+body[data-mod=fin]{--topo:#e8dcc4;--topo-ink:#2e2418;--topo-sub:#7a5c12;--topo-bt:#1d3a2c;--topo-bt-ink:#fff}
+body[data-mod=cal]{--topo:#9a7209;--topo-ink:#fff;--topo-sub:#fbecc4;--topo-bt:#fff;--topo-bt-ink:#5a4305}
+body[data-mod=fotos]{--topo:#ffffff;--topo-ink:#1d3a2c;--topo-sub:#9a7209;--topo-bt:#1d3a2c;--topo-bt-ink:#fff}
+body[data-mod=fotos] .top{border-bottom:1px solid #e3e6e2}
+body[data-mod=esc]{--topo:#5e1a24;--topo-ink:#fff;--topo-sub:#e8b4bc;--topo-bt:#fff;--topo-bt-ink:#5e1a24}
+.tile[data-m=financeiro],.tile[data-m=fin-grupos],.tile[data-m=fin-geral]{background:#e8dcc4;color:#2e2418}.tile[data-m=financeiro] svg,.tile[data-m^=fin-] svg{color:#7a5c12}
+.tile[data-m=calendario]{background:#9a7209;color:#fff}.tile[data-m=calendario] svg{color:#fff}
+.tile[data-m=fotos],.tile[data-m^=fotos-]{background:#fff;color:#1d3a2c;border:1px solid #d9dfda}.tile[data-m=fotos] svg,.tile[data-m^=fotos-] svg{color:#9a7209}
+.tile[data-m=escalas]{background:#5e1a24;color:#fff}.tile[data-m=escalas] svg{color:#e8b4bc}
+.tile.off{filter:grayscale(.85)}
 .breve{background:var(--card);border:1px dashed var(--line);border-radius:18px;padding:40px 24px;text-align:center;color:var(--mute)}
 .breve h2{color:var(--ink);margin-bottom:8px}
 @media(max-width:860px){.caixa{grid-template-columns:minmax(0,1fr)}.comanda{position:static}}
@@ -349,7 +362,7 @@ let produtos=[], eventos=[], cart=[], filtro="TODOS", mcp=null, vendas=[];
 /* Navegação entre módulos */
 const nomes={calendario:"Calendário",financeiro:"Financeiro",escalas:"Escalas",alimentacao:"Alimentação",eventos:"Eventos",lojinha:"Lojinha",fotos:"Fotos",financeiro:"Financeiro","fin-grupos":"Financeiro grupos","fin-geral":"Financeiro geral",material:"Material gráfico"};
 const PAI={"fin-grupos":"financeiro","fin-geral":"financeiro"};let telaAtual="home";
-function ir(m){telaAtual=m;for(const[s,k]of[["v-fin","financeiro"],["v-fin-grupos","fin-grupos"],["v-fin-geral","fin-geral"]])$(s).hidden=m!==k;
+function ir(m){telaAtual=m;document.body.dataset.mod=({lojinha:"loja",calendario:"cal",financeiro:"fin","fin-grupos":"fin","fin-geral":"fin",fotos:"fotos",escalas:"esc"})[m]||"";for(const[s,k]of[["v-fin","financeiro"],["v-fin-grupos","fin-grupos"],["v-fin-geral","fin-geral"]])$(s).hidden=m!==k;
   if(m==="fin-grupos")abrirGrupos();if(m==="fin-geral")abrirGeral();
   $("v-cal").hidden=m!=="calendario";if(m==="calendario")abrirCal();$("v-home").hidden=m!=="home";$("v-lojinha").hidden=m!=="lojinha";$("v-fotos").hidden=m!=="fotos";$("v-outro").hidden=true;
   $("crumb").hidden=m==="home";$("crumb-t").textContent=nomes[m]||"";$("b-tit").textContent=nomes[m]||"";try{location.hash=m==="home"?"":m}catch{}window.scrollTo(0,0)}
