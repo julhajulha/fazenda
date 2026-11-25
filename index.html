@@ -734,7 +734,7 @@ async function carregarBase(){const [pr,ev,fo]=await Promise.all([ler("PRODUTOS!
 
 
 renderCart();
-const API="https://script.google.com/macros/s/AKfycbwTCkjrS-OwmKiVBXSf9z-xwZp0HJcr-hvKw5w_fjHPu0gAb3YGO7n7OAVftCUfbmpg/exec";
+const API="https://script.google.com/macros/s/AKfycbw9llzsAYOSLgduioiCuEJtT09u9A02BHrJafAR9tS-e8NP33V7434Eg9y3ldSnAWZd/exec";
 function senha(){try{return localStorage.getItem("senha")||""}catch{return window._senha||""}}
 function pedirSenha(m){$("gate").classList.add("on");$("g-msg").textContent=m||"";$("g-msg").className=m?"msg err":"msg";setTimeout(()=>$("g-pin").focus(),50)}
 $("g-form").addEventListener("submit",e=>{e.preventDefault();const v=$("g-pin").value.trim();if(!v)return;try{localStorage.setItem("senha",v)}catch{window._senha=v}$("gate").classList.remove("on");iniciar()});
