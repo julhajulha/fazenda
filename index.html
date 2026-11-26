@@ -179,7 +179,16 @@ body[data-mod=cal]{--topo:#9a7209;--topo-ink:#fff;--topo-sub:#fbecc4;--topo-bt:#
 body[data-mod=fotos]{--topo:#ffffff;--topo-ink:#1d3a2c;--topo-sub:#9a7209;--topo-bt:#1d3a2c;--topo-bt-ink:#fff}
 body[data-mod=fotos] .top{border-bottom:1px solid #e3e6e2}
 body[data-mod=esc]{--topo:#5e1a24;--topo-ink:#fff;--topo-sub:#e8b4bc;--topo-bt:#fff;--topo-bt-ink:#5e1a24}
-body[data-mod=fin]{--bg:light-dark(#f6efe2,#17110d)}body[data-mod=cal]{--bg:light-dark(#fbf3dc,#17130a)}body[data-mod=esc]{--bg:light-dark(#f8ecee,#1a0e10)}
+body[data-mod=loja]{--bg:#1d3a2c}body[data-mod=fin]{--bg:#e8dcc4}body[data-mod=cal]{--bg:#9a7209}body[data-mod=fotos]{--bg:#ffffff}body[data-mod=esc]{--bg:#5e1a24}
+body[data-mod=fin] main{--ink:#2e2418;--mute:#6b5a43;--line:#d3c4a6}
+body[data-mod=fotos] main{--ink:#111;--mute:#5f6661;--line:#e3e6e2}
+body[data-mod=loja] main,body[data-mod=cal] main,body[data-mod=esc] main{--ink:#fff;--mute:rgb(255 255 255 / .78);--line:rgb(255 255 255 / .28);color:var(--ink)}
+body[data-mod] main :is(.comanda,.kpi,.vwrap,.rcard,.form,.cform,.prod,.mes,.pl,.breve,.dbox,table,.tools input,.filtros select,.filtros input,.vbusca,.sub button,.chips button,.btn,.pay button,.msg){--ink:#111;--mute:#5f6661;--line:#e3e6e2;--card:#fff;--bg:#fbfaf8;color:var(--ink)}
+body[data-mod] main .sub button[aria-current=page]{color:#fff}body[data-mod] main .chips button[aria-pressed=true]{color:#111}
+body[data-mod=loja] main .sub,body[data-mod=cal] main .sub,body[data-mod=esc] main .sub{border-bottom-color:rgb(255 255 255 / .28)}
+body[data-mod=loja] .sub button[aria-current=page]{background:#d9a92a;border-color:#d9a92a;color:#111!important}
+.evl:hover{background:rgb(127 127 127 / .15)!important}
+.pay button[aria-pressed=true]{color:#fff!important}.prod.in{color:#111}
 .tile.off{filter:grayscale(.85)}
 .breve{background:var(--card);border:1px dashed var(--line);border-radius:18px;padding:40px 24px;text-align:center;color:var(--mute)}
 .breve h2{color:var(--ink);margin-bottom:8px}
@@ -502,7 +511,7 @@ function claro(hex){const m=/^#([0-9a-f]{6})$/i.exec(hex||"");if(!m)return true;
 async function verAba(box,id,aba,titulo,url){
   box.innerHTML=`<div class="vtopo"><h2>${esc(titulo||aba)}</h2><div class="row" style="margin:0"><input class="vbusca" type="search" placeholder="Buscar nesta aba" aria-label="Buscar nesta aba">${url?`<a class="btn" style="display:inline-flex;align-items:center;text-decoration:none" target="_blank" rel="noopener" href="${esc(url)}">Abrir no Google Sheets</a>`:""}<button class="btn" data-recarrega="1">Atualizar</button></div></div><div class="msg" role="status"></div><div class="vcorpo"><p class="vazio">Carregando…</p></div>`;
   const corpo=box.querySelector(".vcorpo"),msgb=box.querySelector(".msg"),busca=box.querySelector(".vbusca");let dados=null;
-  const desenhar=()=>{if(!dados)return;const{valores:V,estilo:E,ocultas:O}=dados;if(!V.length){corpo.innerHTML=`<p class="vazio">Aba vazia.</p>`;return}
+  const desenhar=()=>{if(!dados)return;const V=dados.valores||[],E=dados.estilo||{},O=dados.ocultas||[];if(!V.length){corpo.innerHTML=`<p class="vazio">Aba vazia.</p>`;return}
     const nc=Math.max(...V.map(r=>r.length));const cols=[];for(let j=0;j<nc;j++){if((O||[]).includes(j))continue;if(V.some((r,i)=>String(r[j]??"").trim()||(E[i+","+j]&&E[i+","+j].e)))cols.push(j)}
     const q=sem(busca.value.trim());let html="",vazias=0,ultCheia=-1;V.forEach((r,i)=>{if(cols.some(j=>String(r[j]??"").trim()||(E[i+","+j]&&E[i+","+j].e)))ultCheia=i});
     for(let i=0;i<=ultCheia;i++){const r=V[i];const cheia=cols.some(j=>String(r[j]??"").trim()||(E[i+","+j]&&E[i+","+j].e));
