@@ -161,7 +161,7 @@ a.btn{color:var(--ink)}a.btn.pri{color:var(--on)}
 .tiles.ano .tile{aspect-ratio:auto;min-height:clamp(90px,14vw,130px)}.tiles.ano .tile b{font-size:clamp(22px,3vw,32px)}
 .lista-pl{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:10px}
 .pl{display:flex;align-items:center;gap:12px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;min-height:64px}.pl:hover{border-color:var(--jabu)}
-.pl i{width:34px;height:34px;border-radius:9px;background:var(--cacau);flex:none;display:grid;place-items:center;color:#d9a92a;font-style:normal;font-weight:700;font-size:13px}.pl b{font-weight:600;line-height:1.25}
+.pl i{min-width:44px;height:34px;padding:0 4px;border-radius:9px;background:var(--cacau);flex:none;display:grid;place-items:center;color:#d9a92a;font-style:normal;font-weight:700;font-size:13px}.pl b{font-weight:600;line-height:1.25}
 .vtopo{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:4px 0 10px}.vtopo h2{font-size:clamp(20px,2.6vw,28px)}
 .vbusca{min-height:42px;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:0 12px;font-size:16px;width:min(320px,100%)}
 .vwrap{overflow:auto;max-height:75vh;border:1px solid var(--line);border-radius:12px;background:var(--card)}
@@ -205,10 +205,10 @@ body[data-mod=loja] .sub button[aria-current=page]{background:#d9a92a;border-col
 .ap-bt{height:70px;width:100%;display:flex;align-items:flex-end;justify-content:center}.ap-bt i{display:block;width:70%;max-width:26px;background:#1d3a2c;border-radius:5px 5px 2px 2px}.ap-bt i.neg{background:#b03a2e}
 .ap-b small{font-size:11px;color:#5f6661;text-transform:capitalize}
 .ap-tags{display:flex;gap:6px;flex-wrap:wrap}.ap-tags span{font-size:12px;background:#f2f2ef;border-radius:8px;padding:4px 8px}.ap-tags small{display:block;color:#5f6661;font-size:10px}
-.ap-compara{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:12px;margin:6px 0 12px}
+.ap-compara{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:12px;margin:6px 0 12px}
 .ap-cc{background:#fff;color:#111;border:1px solid #e3e6e2;border-radius:16px;padding:14px}.ap-cc h4{margin:0 0 8px;font-size:18px;color:#1d3a2c}
 .ap-ccs{font-size:11px;font-weight:700;letter-spacing:.06em;color:#9a7209;margin:12px 0 4px;text-transform:uppercase}
-.ap-ccl{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:5px 0;border-bottom:1px solid #f0f0ec;font-size:14px}.ap-ccl span:first-child{color:#5f6661;line-height:1.25}.ap-ccl .num{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ap-ccl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:5px 0;border-bottom:1px solid #f0f0ec;font-size:14px}.ap-ccl span:first-child{color:#5f6661;line-height:1.25}.ap-ccl .num{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
 .ap-ccl.forte{font-weight:700}.ap-ccl.forte span:first-child{color:#111}.ap-ccl.forte .num{font-size:17px;color:#1d3a2c}
 .ap-lista{display:grid;gap:8px;margin:6px 0 12px}.ap-busca{margin:4px 0 8px}
 .lc{background:#fff;color:#111;border:1px solid #e3e6e2;border-radius:14px;padding:12px 14px}.lc[data-abre]{cursor:pointer}.lc.tot{border:2px solid #1d3a2c;background:#f4f7f5}
@@ -217,7 +217,7 @@ body[data-mod=loja] .sub button[aria-current=page]{background:#d9a92a;border-col
 .lc-det{display:none;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 14px;margin-top:10px;padding-top:10px;border-top:1px dashed #e3e6e2;font-size:13px}.lc.aberto .lc-det{display:grid}.lc-det small{display:block;color:#5f6661}
 .lc.es .lc-top{align-items:center}.es-d{font-size:12px;color:#5f6661;white-space:nowrap;min-width:3.2em}.lc.es .lc-top b{flex:1}.tag{background:#f2f2ef;border-radius:999px;padding:2px 10px;font-size:12px}.es-st{font-size:12px;color:#9a7209}
 input.campo{width:100%;max-width:220px;min-height:40px;border:2px solid #b5860f;border-radius:10px;background:#fff8dc;color:#111;padding:0 10px;font-size:16px;font-weight:600}input.campo.grande{font-size:20px}input.campo.mini{min-height:26px;font-size:11px;padding:0 3px;max-width:60px;border-width:1px}
-.ap-ccl input.campo{max-width:120px;text-align:right}
+.ap-ccl input.campo{width:110px;max-width:110px;text-align:right}.ap-ccl .num{font-size:14px}.ap-ccl.forte .num{font-size:16px}.ap-ccl span:first-child{font-size:13px}
 .anos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(170px,45%),1fr));gap:14px;max-width:760px}
 .ano-c{background:#fff;color:#1d3a2c;border:1px solid #e3e6e2;border-radius:18px;padding:20px 18px;text-align:left;display:flex;flex-direction:column;gap:6px;box-shadow:0 4px 14px rgb(0 0 0 / .06);font-family:"DM Sans",sans-serif}
 .ano-c b{font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.01em}.ano-c small{color:#9a7209;font-weight:600;font-size:13px}.ano-c:hover{border-color:#1d3a2c}
@@ -686,8 +686,9 @@ async function abrirGrupos(){trilha();const box=$("fg-box");box.innerHTML=`<p cl
       box.innerHTML=`<div class="anos">${r.map(x=>`<button class="ano-c" data-ano="${esc(x.id)}" data-nome="${esc(x.nome)}"><b>${esc(x.nome)}</b><small>Planilhas de grupo ›</small></button>`).join("")}</div>`}
     else if(fg.nivel==="ano"){const r=(await mcp.callTool(SRV,"fin_pasta",{id:fg.ano.id},{cache:false})).payload;
       const ordemMes=n=>{const m=/^(JAN|FEV|MAR|ABR|MAI|JUN|JUL|AGO|SET|OUT|NOV|DEZ)/i.exec(n);return m?["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"].indexOf(m[1].toUpperCase()):99};
-      r.sort((a,b)=>ordemMes(a.nome)-ordemMes(b.nome)||a.nome.localeCompare(b.nome));
-      box.innerHTML=r.length?`<div class="lista-pl">${r.map(x=>`<button class="pl" data-pl="${esc(x.id)}" data-nome="${esc(x.nome)}" data-url="${esc(x.url)}"><i>${esc((/^[A-Z]{3}/i.exec(x.nome)||[""])[0].toUpperCase()||"▦")}</i><b>${esc(x.nome)}</b></button>`).join("")}</div>`:`<p class="vazio">Nenhuma planilha neste ano.</p>`}
+      const chave=x=>x.data||(fg.ano.nome+"-"+String(ordemMes(x.nome)+1).padStart(2,"0")+"-99");
+      r.sort((a,b)=>chave(a)<chave(b)?-1:chave(a)>chave(b)?1:(a.criado||0)-(b.criado||0)||a.nome.localeCompare(b.nome));
+      box.innerHTML=r.length?`<div class="lista-pl">${r.map(x=>`<button class="pl" data-pl="${esc(x.id)}" data-nome="${esc(x.nome)}" data-url="${esc(x.url)}"><i>${esc(x.data?x.data.slice(8,10)+"/"+x.data.slice(5,7):(/^[A-Z]{3}/i.exec(x.nome)||[""])[0].toUpperCase()||"▦")}</i><b>${esc(x.nome)}</b></button>`).join("")}</div>`:`<p class="vazio">Nenhuma planilha neste ano.</p>`}
     else{const r=(await mcp.callTool(SRV,"fin_abas",{id:fg.pl.id},{cache:false})).payload;fg.abas=r.abas;if(!fg.aba||!r.abas.includes(fg.aba))fg.aba=r.abas[0];
       box.innerHTML=`<nav class="sub" id="fg-sub">${r.abas.map(a=>`<button data-aba="${esc(a)}"${a===fg.aba?' aria-current="page"':""}>${esc(cap(a))}</button>`).join("")}</nav><div id="fg-aba"></div>`;
       verAba($("fg-aba"),fg.pl.id,fg.aba,cap(fg.aba),fg.pl.url)}}catch(e){falha(e)}}
