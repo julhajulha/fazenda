@@ -591,7 +591,7 @@ function telaApp(corpo,d){const V=d.valores||[],E=d.estilo||{},O=d.ocultas||[];i
       const hdr=b[k],rows=b.slice(k+1).filter(r=>!vazia(r));k=b.length;
       const hcols=hdr.map((c,x)=>({x,t:c.v})).filter(h=>h.t||rows.some(r=>r[h.x].v||r[h.x].e));
       const meses=hcols.slice(1).filter(h=>MES_RE.test(h.t)).length;
-      const tituloTab=hdr[0].v&&hdr[0].v===hdr[0].v.toUpperCase()&&/[A-ZÁ-Ú]{3}/.test(hdr[0].v)?hdr[0].v:(hdr.find(c=>c.v&&c.v===c.v.toUpperCase()&&/[A-ZÁ-Ú]{4}/.test(c.v)&&!MES_RE.test(c.v))||{}).v;
+      const tituloTab=!hdr[0].v?"":hdr[0].v===hdr[0].v.toUpperCase()&&/[A-ZÁ-Ú]{3}/.test(hdr[0].v)?hdr[0].v:(hdr.find(c=>c.v&&c.v===c.v.toUpperCase()&&/[A-ZÁ-Ú]{4}/.test(c.v)&&!MES_RE.test(c.v))||{}).v;
       if(tituloTab)html+=`<h3 class="ap-sec">${esc(frase(tituloTab))}</h3>`;
       if(meses>=4){html+=serie(hdr,rows,hcols);continue}
       if(!hdr[0].v&&hcols.length<=7&&rows.length>=3){html+=compara(hdr,rows,hcols);continue}
