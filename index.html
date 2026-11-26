@@ -179,13 +179,13 @@ body[data-mod=fin]{--topo:#e8dcc4;--topo-ink:#2e2418;--topo-sub:#7a5c12;--topo-b
 body[data-mod=cal]{--topo:#9a7209;--topo-ink:#fff;--topo-sub:#fbecc4;--topo-bt:#fff;--topo-bt-ink:#5a4305}
 body[data-mod=fotos]{--topo:#ffffff;--topo-ink:#1d3a2c;--topo-sub:#9a7209;--topo-bt:#1d3a2c;--topo-bt-ink:#fff}
 body[data-mod=fotos] .top{border-bottom:1px solid #e3e6e2}
-body[data-mod=esc]{--topo:#5e1a24;--topo-ink:#fff;--topo-sub:#e8b4bc;--topo-bt:#fff;--topo-bt-ink:#5e1a24}
+body[data-mod=esc]{--topo:#3d0d16;--topo-ink:#fff;--topo-sub:#e8b4bc;--topo-bt:#fff;--topo-bt-ink:#3d0d16}
 body:not([data-mod]),body[data-mod=""]{--bg:#1d3a2c}
 body:not([data-mod]) #v-home .tile,body[data-mod=""] #v-home .tile{background:#2b5543;box-shadow:0 8px 22px rgb(0 0 0 / .28)}
 body:not([data-mod]) #v-home .tile.off,body[data-mod=""] #v-home .tile.off{background:#24463a;opacity:.55;filter:none}
 body:not([data-mod]) #v-home .tile.off svg,body[data-mod=""] #v-home .tile.off svg{color:#a9bfb3}body:not([data-mod]) #v-home .tile.off small,body[data-mod=""] #v-home .tile.off small{color:#c9d3cc}
 body:not([data-mod]) .top,body[data-mod=""] .top{border-bottom:1px solid rgb(255 255 255 / .08)}
-body[data-mod=loja]{--bg:#1d3a2c}body[data-mod=fin]{--bg:#e8dcc4}body[data-mod=cal]{--bg:#9a7209}body[data-mod=fotos]{--bg:#ffffff}body[data-mod=esc]{--bg:#5e1a24}
+body[data-mod=loja]{--bg:#1d3a2c}body[data-mod=fin]{--bg:#e8dcc4}body[data-mod=cal]{--bg:#9a7209}body[data-mod=fotos]{--bg:#ffffff}body[data-mod=esc]{--bg:#3d0d16}
 body[data-mod=fin] main{--ink:#2e2418;--mute:#6b5a43;--line:#d3c4a6}
 body[data-mod=fotos] main{--ink:#111;--mute:#5f6661;--line:#e3e6e2}
 body[data-mod=loja] main,body[data-mod=cal] main,body[data-mod=esc] main{--ink:#fff;--mute:rgb(255 255 255 / .78);--line:rgb(255 255 255 / .28);color:var(--ink)}
@@ -231,12 +231,23 @@ input.campo{width:100%;max-width:220px;min-height:40px;border:2px solid #b5860f;
 .dia-c{background:#fff;color:#111;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;border:2px solid transparent}.dia-c.hj{border-color:#d9a92a}
 .dia-c h3{margin:0;font-family:"DM Sans",sans-serif;font-size:17px;display:flex;justify-content:space-between;align-items:baseline}.dia-c h3 small{color:#5f6661;font-weight:500;font-size:13px}
 .ev-tag{background:#7986cb;color:#fff;border-radius:10px;padding:6px 10px;font-size:13px;font-weight:600}
-.esc-g{display:flex;flex-direction:column;gap:4px}.esc-g>span{font-size:11px;font-weight:700;letter-spacing:.06em;color:#5e1a24;text-transform:uppercase}
-.pes{display:flex;flex-wrap:wrap;gap:6px}.pes i{font-style:normal;background:#f6ecee;color:#5e1a24;border-radius:999px;padding:4px 10px;font-size:14px;font-weight:600}.pes i.g{background:#eef0fa;color:#3f4a8a}.pes i.f{background:#f2f2ef;color:#333}
+.esc-g{display:flex;flex-direction:column;gap:4px}.esc-g>span{font-size:11px;font-weight:700;letter-spacing:.06em;color:#3d0d16;text-transform:uppercase}
+.pes{display:flex;flex-wrap:wrap;gap:6px}.pes i{font-style:normal;background:#f4e8ea;color:#3d0d16;border-radius:999px;padding:4px 10px;font-size:14px;font-weight:600}.pes i.g{background:#eef0fa;color:#3f4a8a}.pes i.f{background:#f2f2ef;color:#333}
 .pes .vz{color:#9aa09c;font-size:13px}
-.edit{background:none;border:0;color:#5e1a24;text-decoration:underline;font-size:13px;padding:2px;align-self:flex-start}
-.picker{display:flex;flex-wrap:wrap;gap:6px}.picker button{border:1px solid #e0c5ca;background:#fff;border-radius:999px;padding:6px 12px;font-size:14px;color:#5e1a24}.picker button[aria-pressed=true]{background:#5e1a24;color:#fff;border-color:#5e1a24}
+.edit{background:none;border:0;color:#3d0d16;text-decoration:underline;font-size:13px;padding:2px;align-self:flex-start}
+.picker{display:flex;flex-wrap:wrap;gap:6px}.picker button{border:1px solid #e0c5ca;background:#fff;border-radius:999px;padding:6px 12px;font-size:14px;color:#3d0d16}.picker button[aria-pressed=true]{background:#3d0d16;color:#fff;border-color:#3d0d16}
 .picker input{border:1px solid #e3e6e2;border-radius:999px;padding:6px 12px;font-size:14px;width:120px}
+.esc-modo button{background:#fff!important;color:#3d0d16!important;border-color:#fff!important}.esc-modo button[aria-pressed=true]{background:#d9a92a!important;color:#111!important;border-color:#d9a92a!important}
+.mes-e{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:#fff;color:#111;border-radius:16px;overflow:hidden}
+.mes-e .dow{font-size:12px;color:#5f6661;text-align:center;padding:8px 0;border-bottom:1px solid #eee;font-weight:700}
+.mes-e .d{min-height:clamp(70px,12vw,130px);border-right:1px solid #f0ecec;border-bottom:1px solid #f0ecec;padding:5px;display:flex;flex-direction:column;gap:3px;cursor:pointer;font-size:11px;line-height:1.25}
+.mes-e .d:nth-child(7n){border-right:0}.mes-e .d.fora{opacity:.35}.mes-e .d.hj .n{background:#d9a92a;border-radius:999px}.mes-e .d:hover{background:#fbf5f6}
+.mes-e .n{font-weight:700;font-size:12px;width:22px;height:22px;display:grid;place-items:center}
+.mes-e .ev{background:#7986cb;color:#fff;border-radius:4px;padding:1px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+.mes-e .ln{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mes-e .ln b{font-weight:700}.mes-e .lg b{color:#3f4a8a}.mes-e .le b{color:#555}.mes-e .lc2 b{color:#3d0d16}
+.mes-e .dots{display:none;gap:3px}.mes-e .dots i{width:7px;height:7px;border-radius:50%}
+@media(max-width:600px){.mes-e .ln{display:none}.mes-e .dots{display:flex}.mes-e .ev{font-size:0;height:5px;padding:0}}
+.esc-leg{display:flex;gap:14px;flex-wrap:wrap;color:#fff;font-size:13px;margin:10px 0}.esc-leg b{font-weight:700}
 .breve{background:var(--card);border:1px dashed var(--line);border-radius:18px;padding:40px 24px;text-align:center;color:var(--mute)}
 .breve h2{color:var(--ink);margin-bottom:8px}
 @media(max-width:860px){.caixa{grid-template-columns:minmax(0,1fr)}.comanda{position:static}}
@@ -261,10 +272,12 @@ input.campo{width:100%;max-width:220px;min-height:40px;border:2px solid #b5860f;
   <section id="v-fin-grupos" hidden><nav class="trilha" id="fg-trilha"></nav><div id="fg-box"></div></section>
   <section id="v-fin-geral" hidden><nav class="sub" id="fgeral-sub" aria-label="Abas do financeiro geral"></nav><div id="fgeral-box"></div></section>
   <section id="v-esc" hidden>
-    <div class="calbar"><button class="btn" id="esc-prev" aria-label="Semana anterior">‹</button><h2 id="esc-tit" style="min-width:9em"></h2><button class="btn" id="esc-next" aria-label="Próxima semana">›</button><button class="btn" id="esc-hoje">Hoje</button></div>
+    <div class="pay esc-modo" id="esc-modo" style="max-width:260px;margin-bottom:12px"><button data-v="semana" aria-pressed="true">Semana</button><button data-v="mes" aria-pressed="false">Mês</button></div>
+    <div class="calbar"><button class="btn" id="esc-prev" aria-label="Anterior">‹</button><h2 id="esc-tit" style="min-width:9em"></h2><button class="btn" id="esc-next" aria-label="Próximo">›</button><button class="btn" id="esc-hoje">Hoje</button></div>
     <div class="row" style="margin:0 0 12px"><a class="btn pri" id="esc-zap" target="_blank" rel="noopener" href="#" style="display:inline-flex;align-items:center;text-decoration:none">Enviar escala da cozinha</a><button class="btn" id="esc-copiar">Copiar texto</button><button class="btn" id="esc-repetir">Repetir cozinha da semana anterior</button></div>
     <div class="msg" id="esc-msg" role="status"></div>
     <div class="semana" id="esc-dias"><p class="vazio">Carregando…</p></div>
+    <div id="esc-mes" hidden></div>
   </section>
   <section id="v-cal" hidden>
     <div class="calbar"><button class="btn" id="cal-prev" aria-label="Mês anterior">‹</button><h2 id="cal-tit"></h2><button class="btn" id="cal-next" aria-label="Próximo mês">›</button><button class="btn" id="cal-hoje">Hoje</button></div>
@@ -522,7 +535,15 @@ const DSEM=["dom","seg","ter","qua","qui","sex","sab"],DNOME=["Domingo","Segunda
 let escSeg=(()=>{const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-((d.getDay()+6)%7));return d})(),escD=null,escEdit=null;
 const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
 const semAc=s=>String(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
-async function abrirEsc(){const fim=addD(escSeg,6);$("esc-tit").textContent=`${escSeg.getDate()}/${escSeg.getMonth()+1} a ${fim.getDate()}/${fim.getMonth()+1}`;
+let escModo="semana",escMes=(()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth(),1)})();
+$("esc-modo").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;escModo=b.dataset.v;for(const x of b.parentNode.children)x.setAttribute("aria-pressed",x===b);
+  if(escModo==="mes")escMes=new Date(escSeg.getFullYear(),escSeg.getMonth(),1);abrirEsc()});
+function iniGrade(){const d=new Date(escMes);d.setDate(1-((d.getDay()+6)%7));return d}
+async function abrirEsc(){const mes=escModo==="mes";$("esc-dias").hidden=mes;$("esc-mes").hidden=!mes;for(const id of["esc-zap","esc-copiar","esc-repetir"])$(id).hidden=mes;
+  if(mes){$("esc-tit").textContent=cap(MESES[escMes.getMonth()])+" "+escMes.getFullYear();$("esc-mes").innerHTML=`<p class="vazio" style="color:#fff">Carregando…</p>`;if(!mcp)return;
+    const g=iniGrade();try{escD=(await mcp.callTool(SRV,"esc_dados",{ini:ymd(addD(g,-1)),fim:ymd(addD(g,43))},{cache:false})).payload;desenharMes()}
+    catch(e){$("esc-mes").innerHTML=`<p class="vazio" style="color:#fff">${esc(/Operação desconhecida/.test(e.message||"")?"Falta atualizar o código no Apps Script para as escalas.":erroTxt(e))}</p>`}return}
+  const fim=addD(escSeg,6);$("esc-tit").textContent=`${escSeg.getDate()}/${escSeg.getMonth()+1} a ${fim.getDate()}/${fim.getMonth()+1}`;
   $("esc-dias").innerHTML=`<p class="vazio">Carregando…</p>`;if(!mcp)return;
   try{escD=(await mcp.callTool(SRV,"esc_dados",{ini:ymd(addD(escSeg,-7)),fim:ymd(addD(escSeg,7))},{cache:false})).payload;desenharEsc()}
   catch(e){$("esc-dias").innerHTML=`<p class="vazio">${esc(/Operação desconhecida/.test(e.message||"")?"Falta atualizar o código no Apps Script para as escalas.":erroTxt(e))}</p>`}}
@@ -533,6 +554,14 @@ function diaInfo(d){const k=ymd(d),dw=DSEM[d.getDay()];const evs=escD.eventos.fi
   const fixos=[];escD.fixos.forEach(f=>{const ds=semAc(f.dias);if(ds.includes("vespera")){if(escD.eventos.some(e=>e.ini===ymd(addD(d,1))))fixos.push(f.pessoa+(f.turno?` (${f.turno})`:""))}
     else if(ds.split(/[^a-z]+/).includes(dw))fixos.push(f.pessoa+(f.turno?` (${f.turno})`:""))});
   const cz=(escD.cozinha.find(c=>c.data===k)||{pessoas:[]}).pessoas;return{k,evs,ger,fixos,cz}}
+function desenharMes(){const g=iniGrade(),hj=ymd(new Date());let html=["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"].map(d=>`<div class="dow">${d}</div>`).join("");
+  for(let i=0;i<42;i++){const d=addD(g,i),x=diaInfo(d);const ln=(c,l,ns)=>ns.length?`<div class="ln ${c}"><b>${l}</b> ${esc(ns.join(", "))}</div>`:"";
+    html+=`<div class="d${d.getMonth()!==escMes.getMonth()?" fora":""}${x.k===hj?" hj":""}" data-dia="${x.k}"><span class="n">${d.getDate()}</span>${x.evs.map(e=>`<span class="ev" title="${esc(e.titulo)}">${esc(e.titulo)}</span>`).join("")}
+      ${ln("lg","G",x.ger)}${ln("le","E",x.fixos.map(f=>f.replace(" (manhã)"," ☀")))}${ln("lc2","C",x.cz)}
+      <span class="dots">${x.ger.length?'<i style="background:#3f4a8a"></i>':""}${x.fixos.length?'<i style="background:#999"></i>':""}${x.cz.length?'<i style="background:#3d0d16"></i>':""}</span></div>`}
+  $("esc-mes").innerHTML=`<div class="esc-leg"><span><b>G</b> gerência</span><span><b>E</b> equipe fixa</span><span><b>C</b> cozinha</span><span>Toque num dia para ver e editar a semana</span></div><div class="mes-e">${html}</div>`}
+$("esc-mes").addEventListener("click",e=>{const c=e.target.closest("[data-dia]");if(!c)return;const d=pd(c.dataset.dia);escSeg=addD(d,-((d.getDay()+6)%7));escModo="semana";
+  for(const x of $("esc-modo").children)x.setAttribute("aria-pressed",x.dataset.v==="semana");abrirEsc()});
 function textoZap(){const ls=["*ESCALA*",""];for(let i=0;i<7;i++){const d=addD(escSeg,i),x=diaInfo(d);if(!x.cz.length)continue;ls.push(`*${DZAP[d.getDay()]}*`,...x.cz.map(n=>semAc(n).toUpperCase()),"")}return ls.length>2?ls.join("\n").trim():""}
 function desenharEsc(){const hj=ymd(new Date());let html="";
   for(let i=0;i<7;i++){const d=addD(escSeg,i),x=diaInfo(d),ed=escEdit===x.k;
@@ -554,8 +583,9 @@ $("esc-dias").addEventListener("click",async e=>{const t=e.target;
   try{await mcp.callTool(SRV,"esc_cozinha",{data:k,pessoas:ps},{cache:false});const c=escD.cozinha.find(c=>c.data===k);if(c)c.pessoas=ps;else escD.cozinha.push({data:k,pessoas:ps});escEdit=null;desenharEsc()}
   catch(err){$("esc-msg").textContent=erroTxt(err);$("esc-msg").className="msg err";sv.disabled=false;sv.textContent="Salvar"}});
 $("esc-dias").addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.matches(".picker input")){e.preventDefault();const v=e.target.value.trim();if(!v)return;const b=document.createElement("button");b.type="button";b.textContent=cap(v);b.setAttribute("aria-pressed","true");e.target.before(b);e.target.value=""}});
-$("esc-prev").addEventListener("click",()=>{escSeg=addD(escSeg,-7);escEdit=null;abrirEsc()});$("esc-next").addEventListener("click",()=>{escSeg=addD(escSeg,7);escEdit=null;abrirEsc()});
-$("esc-hoje").addEventListener("click",()=>{const d=new Date();d.setHours(0,0,0,0);escSeg=addD(d,-((d.getDay()+6)%7));abrirEsc()});
+$("esc-prev").addEventListener("click",()=>{if(escModo==="mes")escMes=new Date(escMes.getFullYear(),escMes.getMonth()-1,1);else escSeg=addD(escSeg,-7);escEdit=null;abrirEsc()});
+$("esc-next").addEventListener("click",()=>{if(escModo==="mes")escMes=new Date(escMes.getFullYear(),escMes.getMonth()+1,1);else escSeg=addD(escSeg,7);escEdit=null;abrirEsc()});
+$("esc-hoje").addEventListener("click",()=>{const d=new Date();d.setHours(0,0,0,0);escSeg=addD(d,-((d.getDay()+6)%7));escMes=new Date(d.getFullYear(),d.getMonth(),1);abrirEsc()});
 $("esc-copiar").addEventListener("click",async()=>{const t=textoZap(),m=$("esc-msg");if(!t){m.textContent="Ninguém escalado na cozinha nesta semana.";m.className="msg err";return}try{await navigator.clipboard.writeText(t);m.textContent="Texto copiado.";m.className="msg ok"}catch{m.textContent=t;m.className="msg ok"}});
 $("esc-zap").addEventListener("click",e=>{if(!textoZap())e.preventDefault()});
 $("esc-repetir").addEventListener("click",async()=>{const m=$("esc-msg"),b=$("esc-repetir");const vazios=[];for(let i=0;i<7;i++){const d=addD(escSeg,i),k=ymd(d),ant=ymd(addD(d,-7));const atual=(escD.cozinha.find(c=>c.data===k)||{pessoas:[]}).pessoas,velho=(escD.cozinha.find(c=>c.data===ant)||{pessoas:[]}).pessoas;if(!atual.length&&velho.length)vazios.push([k,velho])}
