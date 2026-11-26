@@ -289,6 +289,10 @@ body[data-mod=man] main{--ink:#fff;--mute:rgb(255 255 255 / .8);--line:rgb(255 2
 .ol{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0ec;font-size:14px}.ol span:first-child{color:#5f6661}.ol b{white-space:nowrap;font-variant-numeric:tabular-nums}.ol.neg b{color:#b03a2e}
 .otot{font-family:Fraunces,serif;font-size:clamp(30px,4vw,40px);margin:10px 0 2px}.osub{font-size:14px;color:#5f6661}.oaviso{background:#fbf3dc;color:#7a5c12;border-radius:10px;padding:8px 10px;font-size:13px;margin-top:10px}
 .orc-r .row{margin-top:14px}
+.odesc{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 12px;align-items:end}.odesc .seg{display:flex;border:1px solid #e3e6e2;border-radius:10px;overflow:hidden}.odesc .seg button{border:0;background:#fbfaf8;min-height:42px;padding:0 14px;font-weight:700;color:#5f6661}.odesc .seg button[aria-pressed=true]{background:#1d3a2c;color:#fff}
+.osalvar{width:100%;margin-top:16px;min-height:50px;border:0;border-radius:14px;background:#1d3a2c;color:#fff;font-weight:700;font-size:16px}.osalvo{font-size:13px;color:#5f6661;margin-top:6px;text-align:center}
+.osl{display:grid;gap:10px}.osc{background:#fff;color:#111;border-radius:16px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;align-items:center}.osc b.t{font-family:Fraunces,serif;font-size:19px;font-weight:600}.osc small{color:#5f6661;font-size:13px}.osc .v{font-family:Fraunces,serif;font-size:22px;white-space:nowrap;text-align:right}.osc .row{grid-column:1/-1;margin-top:6px}.osc .tag2{margin-left:6px}.osc.fech{border-left:5px solid #1d3a2c}.osc.perd{opacity:.6}
+.os-top{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.os-top input{flex:1 1 220px;min-height:44px;border:1px solid #e3e6e2;border-radius:12px;padding:0 14px;font-size:16px;background:#fff;color:#111}
 .tb-top{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}.tb-top input{flex:1 1 220px;min-height:44px;border:1px solid #e3e6e2;border-radius:12px;padding:0 14px;font-size:16px;background:#fff;color:#111}
 .tb-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,46%),1fr));gap:8px;margin-bottom:12px}.tb-kpi div{background:#fff;color:#111;border-radius:14px;padding:10px 14px}.tb-kpi small{display:block;color:#5f6661;font-size:12px}.tb-kpi b{font-size:clamp(18px,2.4vw,24px)}
 .tb-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:10px}
@@ -489,7 +493,7 @@ table.mapa{width:100%;table-layout:fixed;border-collapse:collapse;border:1px sol
     <a class="matc" href="https://claude.ai/artifact/MCuygkq56uNBiNvh2Vyrw4" target="_blank" rel="noopener"><i>🍽️</i><b>Fim de semana com chef convidada</b><span>Apresentação para a Amelia</span><em>Abrir ›</em></a>
     <a class="matc" href="https://docs.google.com/presentation/d/1mPSDG0agjEJeYjfSGG8MX5nhAYQ1PuviHMyzrPBC_oY/edit" target="_blank" rel="noopener"><i>📑</i><b>Retiros de Yoga 2027 · Google Slides</b><span>A versão original, no Drive da fazenda</span><em>Abrir ›</em></a>
   </div></section>
-  <section id="v-orc" hidden><div class="orc"><form class="orc-f" id="orc-f" onsubmit="return false"></form><div class="orc-r" id="orc-r"></div></div></section>
+  <section id="v-orc" hidden><nav class="sub" id="orc-sub" aria-label="Orçamento"><button data-ot="calc" aria-current="page">Calculadora</button><button data-ot="salvos">Orçamentos salvos <span id="orc-n"></span></button></nav><div id="orc-salvos" hidden></div><div class="orc" id="orc-calc"><form class="orc-f" id="orc-f" onsubmit="return false"></form><div class="orc-r" id="orc-r"></div></div></section>
   <section id="v-man" hidden><nav class="sub" id="man-sub" aria-label="Manutenção"><button data-t="MANUTENÇÃO" aria-current="page">Manutenção</button><button data-t="INVESTIMENTOS">Investimentos</button></nav><div id="man-box"></div></section>
   <section id="v-con" hidden><div id="con-box"></div></section>
   <section id="v-outro" hidden><div class="breve"><h2 id="b-tit"></h2><p>Esse módulo entra no sistema nas próximas etapas. Me peça no chat quando quiser começar.</p></div></section>
@@ -911,7 +915,7 @@ $("ali-box").addEventListener("click",async e=>{const t=e.target.closest("button
   if(t.id==="ali-limpar"){if(!confirm("Limpar o cardápio? Apaga as escolhas e horários de todos os dias."))return;t.disabled=true;try{await aliCall("ali_limpar");toast("Cardápio limpo");carregarCard()}catch(err){toast(aliErro(err));t.disabled=false}}});
 /* ---------- Orçamento de grupo ---------- */
 const CASAS=[["loft","Loft",740],["studio","Studio",740],["chalezao","Chalezão",740],["chalezinho","Chalezinho",620]];
-const ORC0={grupo:"",ini:"",fim:"",diarias:2,diaria:360,ref:true,refv:50,ad:20,c712:0,c06:0,soz:0,grat:true,sinal:30};
+const ORC0={grupo:"",ini:"",fim:"",diarias:2,diaria:360,ref:true,refv:50,ad:20,c712:0,c06:0,soz:0,grat:true,sinal:30,dtipo:"%",dval:0,dmot:"",id:"",st:"Enviado"};
 let orc=(()=>{try{return{...ORC0,...JSON.parse(localStorage.getItem("orc")||"{}")}}catch{return{...ORC0}}})();
 const dBR=s=>s?s.split("-").reverse().join("/"):"";
 function abrirOrc(){const f=$("orc-f"),o=orc,n=(k,l,ex="")=>`<div><label for="o-${k}">${l}</label><input id="o-${k}" data-o="${k}" type="number" min="0" step="any" inputmode="decimal" value="${esc(o[k])}"${ex}></div>`;
@@ -923,7 +927,10 @@ function abrirOrc(){const f=$("orc-f"),o=orc,n=(k,l,ex="")=>`<div><label for="o-
   ${o.ref?"":`<div class="orc-g" style="margin-top:6px">${n("refv","Valor por refeição (R$)")}</div>`}
   <label class="ck"><input type="checkbox" data-o="grat"${o.grat?" checked":""}> 1 gratuidade a cada 10 pagantes</label>
   <h3>Casas</h3>${CASAS.map(([k,l,v])=>{const c=o["c_"+k]||{on:false,ad:2,cr:0,ref:false,v};return`<div class="casa${c.on?" on":""}"><label class="ck"><input type="checkbox" data-casa="${k}" data-f="on"${c.on?" checked":""}> ${l}</label>${c.on?`<div class="orc-g"><div><label>Diária até 2 pessoas (R$)</label><input type="number" data-casa="${k}" data-f="v" value="${esc(c.v??v)}"></div><div><label>Adultos</label><input type="number" min="0" data-casa="${k}" data-f="ad" value="${esc(c.ad)}"></div><div><label>Crianças 7 a 12</label><input type="number" min="0" data-casa="${k}" data-f="cr" value="${esc(c.cr)}"></div></div><label class="ck"><input type="checkbox" data-casa="${k}" data-f="ref"${c.ref?" checked":""}> Com refeições (R$ ${o.refv||50} por refeição)</label>`:""}</div>`}).join("")}
-  <h3>Sinal</h3><div class="orc-g">${n("sinal","Sinal (%)")}</div><button type="button" class="ghost" id="o-limpa">Começar um orçamento novo</button>`;
+  <h3>Desconto</h3><div class="odesc"><div class="seg" role="group" aria-label="Tipo de desconto"><button type="button" data-dt="%" aria-pressed="${o.dtipo!=="R$"}">%</button><button type="button" data-dt="R$" aria-pressed="${o.dtipo==="R$"}">R$</button></div>${n("dval",o.dtipo==="R$"?"Desconto (R$)":"Desconto (%)")}<div style="grid-column:1/-1"><label for="o-dmot">Motivo (opcional)</label><input id="o-dmot" data-o="dmot" value="${esc(o.dmot)}" placeholder="ex.: grupo que volta todo ano"></div></div>
+  <h3>Sinal</h3><div class="orc-g">${n("sinal","Sinal (%)")}</div>
+  <button type="button" class="osalvar" id="o-salvar">${o.id?"Salvar alterações":"Salvar orçamento"}</button><p class="osalvo" id="o-salvo">${o.id?`Editando um orçamento salvo · <button type="button" class="ghost" id="o-copia" style="margin:0;padding:0">salvar como novo</button>`:""}</p>
+  <button type="button" class="ghost" id="o-limpa">Começar um orçamento novo</button>`;
   calcOrc()}
 function contaOrc(){const o=orc,D=+o.diarias||0,dv=+o.diaria||0,rv=+o.refv||50,L=[];let tot=0;
   const ad=+o.ad||0,c7=+o.c712||0,c6=+o.c06||0,soz=Math.min(+o.soz||0,ad);
@@ -935,6 +942,7 @@ function contaOrc(){const o=orc,D=+o.diarias||0,dv=+o.diaria||0,rv=+o.refv||50,L
     const val=d*D;L.push([`${l}: ${a} adulto${a===1?"":"s"}${cr?` + ${cr} criança${cr>1?"s":""}`:""} × ${D}`,val]);tot+=val;casasP+=a+cr;
     if(c.ref){const r=(a+cr*.5)*3*rv*D;L.push([`Refeições ${l}`,r]);tot+=r}}
   const pag=ad+c7;let grat=0;if(o.grat&&ad>=10){grat=Math.floor(ad/10);const v=grat*dv*D;L.push([`${grat} gratuidade${grat>1?"s":""} (1 a cada 10 pagantes)`,-v]);tot-=v}
+  const dv2=Math.max(0,+o.dval||0);if(dv2&&tot>0){const v=Math.min(tot,o.dtipo==="R$"?dv2:tot*dv2/100);L.push([`Desconto${o.dtipo==="R$"?"":` de ${dv2}%`}${o.dmot?` (${o.dmot})`:""}`,-v]);tot-=v}
   const pes=ad+c7+c6+casasP;return{L,tot,pes,pag,grat,sinal:tot*(+o.sinal||0)/100,D}}
 function textoOrc(r){const o=orc,per=o.ini&&o.fim?`De ${dBR(o.ini)} a ${dBR(o.fim)}`:"";
   return[`*Orçamento · Fazenda da Serra*`,o.grupo?`Grupo: ${o.grupo}`:"",per?`${per} (${r.D} diária${r.D===1?"":"s"})`:`${r.D} diária${r.D===1?"":"s"}`,"",...r.L.map(([l,v])=>`• ${l}: ${v<0?"− ":""}${brl(Math.abs(v))}`),"",`*Total: ${brl(r.tot)}*`,
@@ -952,7 +960,41 @@ $("orc-f").addEventListener("input",e=>{const t=e.target;
     if((k==="ini"||k==="fim")&&orc.ini&&orc.fim){const n=Math.round((new Date(orc.fim)-new Date(orc.ini))/864e5);if(n>0){orc.diarias=n;$("o-diarias").value=n}}
     if(t.type==="checkbox"){abrirOrc();return}calcOrc();return}
   if(t.dataset.casa){const k="c_"+t.dataset.casa,c=orc[k]=orc[k]||{on:false,ad:2,cr:0,ref:false};c[t.dataset.f]=t.type==="checkbox"?t.checked:t.value;if(t.type==="checkbox")abrirOrc();else calcOrc()}});
-$("orc-f").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.dv){orc.diaria=+b.dataset.dv;abrirOrc()}if(b.id==="o-limpa"){orc={...ORC0};abrirOrc()}});
+$("orc-f").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.dv){orc.diaria=+b.dataset.dv;abrirOrc()}if(b.dataset.dt){orc.dtipo=b.dataset.dt;abrirOrc()}if(b.id==="o-limpa"){orc={...ORC0};abrirOrc()}if(b.id==="o-salvar")salvarOrc(false);if(b.id==="o-copia")salvarOrc(true)});
+/* ---------- Orçamentos salvos ---------- */
+const OABA="ORÇAMENTOS";let osL=(()=>{try{return JSON.parse(localStorage.getItem("orc_salvos")||"[]")}catch{return[]}})(),osQ="",osF="Todos",osNuvem=null;
+const OST=["Enviado","Fechado","Não fechou"];
+function osGuarda(){try{localStorage.setItem("orc_salvos",JSON.stringify(osL))}catch{}const n=$("orc-n");if(n)n.textContent=osL.length?`(${osL.length})`:""}
+function osLinha(x){return[x.o.grupo||"(sem nome)",dBR(x.o.ini),dBR(x.o.fim),String(x.pes),x.tot.toFixed(2).replace(".",","),x.desc?x.desc.toFixed(2).replace(".",","):"",x.o.st||"Enviado",x.em,JSON.stringify(x.o)]}
+async function osSync(x){if(typeof mcp==="undefined"||!mcp)return;try{await aliCall("tab_salvar",{aba:OABA,linha:x.l||"",valores:osLinha(x)});osNuvem=true;if(!x.l)await osPuxa()}catch(e){osNuvem=false}}
+async function osPuxa(){if(typeof mcp==="undefined"||!mcp)return;try{const ls=(await aliCall("tab_ler",{aba:OABA})).linhas||[];osNuvem=true;
+  const nov=[];for(const r of ls){let o;try{o=JSON.parse(r.v[8]||"{}")}catch{continue}if(!o.id)continue;const loc=osL.find(x=>x.o.id===o.id);
+    nov.push({o,l:r.l,pes:+r.v[3]||0,tot:num(r.v[4]),desc:num(r.v[5]),em:r.v[7]||(loc&&loc.em)||""})}
+  for(const x of osL)if(!x.l&&!nov.some(y=>y.o.id===x.o.id))nov.push(x);osL=nov;osGuarda();if(!$("orc-salvos").hidden)desenharSalvos()}catch(e){osNuvem=false}}
+function salvarOrc(novo){const r=contaOrc();if(!r.L.length){toast("Preencha o orçamento antes de salvar");return}
+  if(novo||!orc.id)orc.id="o"+Date.now().toString(36);const desc=r.L.filter(([l])=>l.startsWith("Desconto")).reduce((s,[,v])=>s-v,0);
+  const ex=osL.find(x=>x.o.id===orc.id),x={o:JSON.parse(JSON.stringify(orc)),l:ex?ex.l:"",pes:r.pes,tot:r.tot,desc,em:new Date().toLocaleDateString("pt-BR")};
+  if(ex)Object.assign(ex,x);else osL.unshift(x);osGuarda();abrirOrc();toast(ex?"Orçamento atualizado ✓":"Orçamento salvo ✓");osSync(ex||x)}
+function desenharSalvos(){const box=$("orc-salvos"),q=sem(osQ);let vs=osL.filter(x=>(osF==="Todos"||(x.o.st||"Enviado")===osF)&&(!q||sem([x.o.grupo,x.o.dmot,dBR(x.o.ini)].join(" ")).includes(q)));
+  const tot=osL.filter(x=>x.o.st==="Fechado").reduce((s,x)=>s+x.tot,0);
+  box.innerHTML=`<div class="tb-kpi"><div><small>Salvos</small><b>${osL.length}</b></div><div><small>Fechados</small><b>${osL.filter(x=>x.o.st==="Fechado").length}</b></div><div><small>Valor fechado</small><b>${brl(tot)}</b></div></div>
+  <div class="os-top"><input type="search" id="os-q" placeholder="Buscar grupo" value="${esc(osQ)}"><button class="btn ok" data-onovo>+ Novo orçamento</button></div>
+  <div class="chips">${["Todos",...OST].map(c=>`<button data-of="${c}" aria-pressed="${c===osF}">${c}</button>`).join("")}</div>
+  ${vs.length?`<div class="osl">${vs.map(x=>{const o=x.o,st=o.st||"Enviado";return`<div class="osc${st==="Fechado"?" fech":st==="Não fechou"?" perd":""}" data-oid="${o.id}"><div><b class="t">${esc(o.grupo||"(sem nome)")}</b><span class="tag2">${esc(st)}</span><br><small>${[o.ini&&o.fim?`${dBR(o.ini)} a ${dBR(o.fim)}`:`${o.diarias} diárias`,`${x.pes} pessoa${x.pes===1?"":"s"}`,x.desc?`desconto ${brl(x.desc)}`:"",x.em&&`salvo em ${x.em}`].filter(Boolean).map(esc).join(" · ")}</small></div><div class="v">${brl(x.tot)}</div>
+    <div class="row"><button class="btn pri" data-oa="abrir">Abrir</button><select class="btn" data-oa="st" aria-label="Status">${OST.map(s=>`<option${s===st?" selected":""}>${s}</option>`).join("")}</select><button class="btn del" data-oa="del">Apagar</button></div></div>`}).join("")}</div>`:`<p class="vazio">${osL.length?"Nada com esse filtro.":"Nenhum orçamento salvo ainda. Monte na Calculadora e toque em “Salvar orçamento”."}</p>`}
+  ${osNuvem===false?`<p class="status" style="margin-top:12px">Guardados neste aparelho. Pra aparecerem em todos os aparelhos, falta atualizar o código no Apps Script.</p>`:""}`}
+function orcTela(t){$("orc-calc").hidden=t!=="calc";$("orc-salvos").hidden=t!=="salvos";for(const b of $("orc-sub").children){if(b.dataset.ot===t)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")}if(t==="salvos"){desenharSalvos();osPuxa()}}
+$("orc-sub").addEventListener("click",e=>{const b=e.target.closest("button");if(b)orcTela(b.dataset.ot)});
+$("orc-salvos").addEventListener("input",e=>{if(e.target.id==="os-q"){osQ=e.target.value;const p=e.target.selectionStart;desenharSalvos();const n=$("os-q");n.focus();n.setSelectionRange(p,p)}});
+$("orc-salvos").addEventListener("change",e=>{const t=e.target;if(t.dataset.oa!=="st")return;const x=osL.find(y=>y.o.id===t.closest("[data-oid]").dataset.oid);if(!x)return;x.o.st=t.value;if(orc.id===x.o.id)orc.st=t.value;osGuarda();desenharSalvos();toast("Status: "+t.value);osSync(x)});
+$("orc-salvos").addEventListener("click",async e=>{const t=e.target;const f=t.closest("[data-of]");if(f){osF=f.dataset.of;desenharSalvos();return}
+  if(t.closest("[data-onovo]")){orc={...ORC0};abrirOrc();orcTela("calc");return}
+  const c=t.closest("[data-oid]");if(!c)return;const i=osL.findIndex(y=>y.o.id===c.dataset.oid),x=osL[i];const a=t.closest("[data-oa]")?.dataset.oa;
+  if(a==="abrir"){orc={...ORC0,...JSON.parse(JSON.stringify(x.o))};abrirOrc();orcTela("calc");window.scrollTo({top:0,behavior:"smooth"});return}
+  if(a==="del"){if(!t.classList.contains("conf")){t.classList.add("conf");t.textContent="Confirmar apagar";return}
+    osL.splice(i,1);osGuarda();if(orc.id===x.o.id){orc.id="";abrirOrc()}desenharSalvos();toast("Apagado");if(x.l&&mcp){try{await aliCall("tab_apagar",{aba:OABA,linha:+x.l});osPuxa()}catch{}}}});
+osGuarda();
+
 /* ---------- Manutenção, Investimentos e Contatos (abas do Consolidado) ---------- */
 const NOMES_EQ=["Julia","Tete","João","Nina","Filipe","Jairo","Marco","Tião","Pedrinho","Miguel"];
 const TB={"MANUTENÇÃO":{tit:"Manutenção",novo:"+ Novo conserto",cols:[["o","O que","txt",1],["onde","Onde"],["pri","Prioridade","sel",0,["Alta","Média","Baixa"]],["resp","Responsável","lista"],["prazo","Prazo","data"],["st","Status","sel",0,["A fazer","Fazendo","Feito"]],["custo","Custo (R$)","num"],["obs","Observação","area"]],filtros:["A fazer","Fazendo","Feito","Todos"]},
