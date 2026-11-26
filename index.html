@@ -314,6 +314,7 @@ table.mapa{width:100%;table-layout:fixed;border-collapse:collapse;border:1px sol
 .mapa td.mn{width:13%}.mapa td.mn b{display:block;font-size:clamp(22px,2.8vw,30px);line-height:1}.mapa td.mn small{display:block;font-size:11px;color:#333}
 .mapa td.mq{width:37%;font-size:clamp(12px,1.4vw,17px);overflow-wrap:anywhere}@media(max-width:600px){.mapa td.mn small{font-size:8px}.mapa td{padding:3px 4px}.mapa th{font-size:15px}}.mapa-x{font-size:14px;margin:10px 4px 0}
 @media print{body.imprimindo *{visibility:hidden!important}body.imprimindo .mapa-imp,body.imprimindo .mapa-imp *{visibility:visible!important}body.imprimindo .mapa-imp{position:absolute;left:0;top:0;width:100%;max-width:none;padding:0}body.imprimindo{background:#fff!important}}
+.pl-sep{font-family:"DM Sans",sans-serif;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7a5c12;margin:24px 0 10px}.pl.pl-o i{background:#d3c4a6;color:#2e2418}
 .breve{background:var(--card);border:1px dashed var(--line);border-radius:18px;padding:40px 24px;text-align:center;color:var(--mute)}
 .breve h2{color:var(--ink);margin-bottom:8px}
 @media(max-width:860px){.caixa{grid-template-columns:minmax(0,1fr)}.comanda{position:static}}
@@ -1064,8 +1065,11 @@ async function abrirGrupos(){trilha();const box=$("fg-box");box.innerHTML=`<p cl
     else if(fg.nivel==="ano"){const r=(await mcp.callTool(SRV,"fin_pasta",{id:fg.ano.id},{cache:false})).payload;
       const ordemMes=n=>{const m=/^(JAN|FEV|MAR|ABR|MAI|JUN|JUL|AGO|SET|OUT|NOV|DEZ)/i.exec(n);return m?["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"].indexOf(m[1].toUpperCase()):99};
       const chave=x=>x.data||(fg.ano.nome+"-"+String(ordemMes(x.nome)+1).padStart(2,"0")+"-99");
+      const ehGrupo=x=>!/MODELO|COMPARTILHADA|ESTUDO|C[ÓO]PIA|TESTE|AN[ÁA]LISE|RASCUNHO|SEM T[ÍI]TULO/i.test(x.nome)&&(!!x.data||/\b(JAN(EIRO)?|FEV(EREIRO)?|MAR(ÇO|CO)?|ABR(IL)?|MAIO?|JUN(HO)?|JUL(HO)?|AGO(STO)?|SET(EMBRO)?|OUT(UBRO)?|NOV(EMBRO)?|DEZ(EMBRO)?)(?![A-ZÇ])/i.test(x.nome));
       r.sort((a,b)=>chave(a)<chave(b)?-1:chave(a)>chave(b)?1:(a.criado||0)-(b.criado||0)||a.nome.localeCompare(b.nome));
-      box.innerHTML=r.length?`<div class="lista-pl">${r.map(x=>`<button class="pl" data-pl="${esc(x.id)}" data-nome="${esc(x.nome)}" data-url="${esc(x.url)}"><i>${esc(x.data?x.data.slice(8,10)+"/"+x.data.slice(5,7):(/^[A-Z]{3}/i.exec(x.nome)||[""])[0].toUpperCase()||"▦")}</i><b>${esc(x.nome)}</b></button>`).join("")}</div>`:`<p class="vazio">Nenhuma planilha neste ano.</p>`}
+      const gr=r.filter(ehGrupo),ou=r.filter(x=>!ehGrupo(x)).sort((a,b)=>a.nome.localeCompare(b.nome,"pt"));
+      const bt=(x,o)=>`<button class="pl${o?" pl-o":""}" data-pl="${esc(x.id)}" data-nome="${esc(x.nome)}" data-url="${esc(x.url)}"><i>${o?"▦":esc(x.data?x.data.slice(8,10)+"/"+x.data.slice(5,7):(/^[A-Z]{3}/i.exec(x.nome)||[""])[0].toUpperCase()||"▦")}</i><b>${esc(x.nome)}</b></button>`;
+      box.innerHTML=r.length?`<div class="lista-pl">${gr.map(x=>bt(x)).join("")}</div>${ou.length?`<h3 class="pl-sep">Outras planilhas</h3><div class="lista-pl">${ou.map(x=>bt(x,1)).join("")}</div>`:""}`:`<p class="vazio">Nenhuma planilha neste ano.</p>`}
     else{const r=(await mcp.callTool(SRV,"fin_abas",{id:fg.pl.id},{cache:false})).payload;fg.abas=r.abas;if(!fg.aba||!r.abas.includes(fg.aba))fg.aba=r.abas[0];
       box.innerHTML=`<nav class="sub" id="fg-sub">${r.abas.map(a=>`<button data-aba="${esc(a)}"${a===fg.aba?' aria-current="page"':""}>${esc(cap(a))}</button>`).join("")}</nav><div id="fg-aba"></div>`;
       verAba($("fg-aba"),fg.pl.id,fg.aba,cap(fg.aba),fg.pl.url)}}catch(e){falha(e)}}
