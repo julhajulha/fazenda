@@ -248,6 +248,34 @@ input.campo{width:100%;max-width:220px;min-height:40px;border:2px solid #b5860f;
 .mes-e .dots{display:none;gap:3px}.mes-e .dots i{width:7px;height:7px;border-radius:50%}
 @media(max-width:600px){.mes-e .ln{display:none}.mes-e .dots{display:flex}.mes-e .ev{font-size:0;height:5px;padding:0}}
 .esc-leg{display:flex;gap:14px;flex-wrap:wrap;color:#fff;font-size:13px;margin:10px 0}.esc-leg b{font-weight:700}
+body[data-mod=ali]{--topo:#6b391c;--topo-ink:#fff;--topo-sub:#f0d289;--topo-bt:#f0d289;--topo-bt-ink:#3b1e0d;--bg:#6b391c}
+body[data-mod=ali] main{--ink:#fff;--mute:rgb(255 255 255 / .8);--line:rgb(255 255 255 / .28);color:var(--ink)}
+body[data-mod=ali] main .sub{border-bottom-color:rgb(255 255 255 / .28)}body[data-mod=ali] .sub button[aria-current=page]{background:#f0d289;border-color:#f0d289;color:#3b1e0d!important}
+body[data-mod=mat]{--topo:#ffffff;--topo-ink:#1d3a2c;--topo-sub:#9a7209;--topo-bt:#1d3a2c;--topo-bt-ink:#fff;--bg:#ffffff}body[data-mod=mat] .top{border-bottom:1px solid #e3e6e2}body[data-mod=mat] main{--ink:#111;--mute:#5f6661;--line:#e3e6e2}
+.mats{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:14px;max-width:960px;margin:18px auto}
+.matc{display:flex;flex-direction:column;gap:6px;background:#fff;color:#111;text-decoration:none;border:1px solid #e3e6e2;border-radius:18px;padding:20px;box-shadow:0 4px 14px rgb(0 0 0 / .06)}.matc:hover{border-color:#1d3a2c}
+.matc i{font-style:normal;font-size:30px;width:54px;height:54px;border-radius:14px;background:#1d3a2c;display:grid;place-items:center}.matc b{font-family:Fraunces,serif;font-size:20px;font-weight:600;line-height:1.2;margin-top:6px}.matc span{color:#5f6661;font-size:14px}.matc em{font-style:normal;color:#1d3a2c;font-weight:700;margin-top:auto;padding-top:8px}
+.ali-topo{background:#fff;color:#111;border-radius:16px;padding:16px;display:grid;gap:8px;margin-bottom:12px}
+.ali-topo select,.ali-dia select{min-height:44px;border:1px solid #e3e6e2;border-radius:10px;padding:0 12px;font-size:16px;background:#fbfaf8;color:#111;width:100%}
+.ali-topo label{color:#5f6661;font-weight:600}.ali-topo .row{margin-top:4px}.ali-topo .row select{width:auto;flex:1 1 220px}.ali-datas{font-weight:700;font-size:15px;margin:0}.ali-restr{margin:0;font-size:14px;color:#6b391c;background:#fbf3ea;border-radius:10px;padding:8px 10px}
+.ali-dia{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 6px}
+.ali-sec{background:#fff;color:#111;border-radius:16px;margin:10px 0;overflow:hidden}
+.ali-sec>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.ali-sec>summary::-webkit-details-marker{display:none}
+.ali-sec>summary h3{font-family:"DM Sans",sans-serif;font-size:17px;font-weight:700;flex:1 1 auto}.ali-sec>summary h3::before{content:"▸ ";color:#6b391c}.ali-sec[open]>summary h3::before{content:"▾ "}
+.ali-sec .meta{font-size:13px;color:#5f6661}.ali-sec select.hora{min-height:34px;border:1px solid #e0cbbd;border-radius:999px;padding:0 10px;font-size:14px;background:#fbf3ea;color:#6b391c;font-weight:700}
+.ali-body{padding:0 16px 16px;display:grid;gap:14px}
+.ali-g>span{font-size:11px;font-weight:700;letter-spacing:.06em;color:#6b391c;text-transform:uppercase;display:block;margin-bottom:5px}
+.ali-g .slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:6px}
+.ali-g select{min-height:42px;border:1px solid #e3e6e2;border-radius:10px;padding:0 10px;font-size:15px;background:#fff;color:#111;width:100%}
+.ali-g select.vz{color:#8a8f8b;border-style:dashed}.ali-g select.ch{border-color:#6b391c;background:#fbf3ea;font-weight:600}
+.tg{display:flex;flex-wrap:wrap;gap:6px}.tg button{border:1px solid #e0cbbd;background:#fff;border-radius:999px;padding:6px 12px;font-size:14px;color:#6b391c;min-height:36px}.tg button[aria-pressed=true]{background:#6b391c;color:#fff;border-color:#6b391c}
+.ali-kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(160px,46%),1fr));gap:8px;margin:0 0 12px}
+.ali-kv div{background:#fff;color:#111;border-radius:14px;padding:10px 12px}.ali-kv small{display:block;color:#5f6661;font-size:12px;line-height:1.3}.ali-kv b{font-size:22px}.ali-kv input.campo{max-width:100px;margin-top:2px}
+.ali-aviso{background:#fbf3ea;color:#6b391c;border-radius:12px;padding:10px 12px;font-size:14px;margin:0 0 12px}
+.lj{background:#fff;color:#111;border-radius:16px;padding:14px 16px;margin:0 0 12px}.lj-t{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}.lj-t h3{font-family:"DM Sans",sans-serif;font-size:18px;font-weight:700}.lj-t small{color:#5f6661;font-weight:400;font-size:13px;margin-left:6px}
+.it{display:flex;align-items:center;gap:10px;padding:8px 0;margin:0;color:#111;border-top:1px solid #f0ece8;cursor:pointer;font-size:15px}.it input{width:20px;height:20px;accent-color:#6b391c;flex:none}.it b{font-variant-numeric:tabular-nums;min-width:5.5em}.it.tem{opacity:.45}.it.tem span{text-decoration:line-through}
+.lj .btn{min-height:36px;font-size:14px}
+.imp{background:#fff;color:#111;border-radius:16px;padding:clamp(16px,3vw,28px);max-width:760px}.imp p{margin:0;font-size:16px;line-height:1.55}.imp p.t{font-weight:700;color:#6b391c;font-size:18px;margin-top:14px}.imp p.t:first-child{margin-top:0}
 .breve{background:var(--card);border:1px dashed var(--line);border-radius:18px;padding:40px 24px;text-align:center;color:var(--mute)}
 .breve h2{color:var(--ink);margin-bottom:8px}
 @media(max-width:860px){.caixa{grid-template-columns:minmax(0,1fr)}.comanda{position:static}}
@@ -262,7 +290,7 @@ input.campo{width:100%;max-width:220px;min-height:40px;border:2px solid #b5860f;
   <div class="crumb" id="crumb" hidden><button id="voltar">‹ Início</button><span id="crumb-t"></span></div>
 </header>
 <main>
-  <section id="v-home"><div class="tiles"><button class="tile" data-m="lojinha"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 26h44l-4-12H14z" fill="currentColor" opacity=".35"/><rect x="14" y="26" width="36" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="3"/><rect x="27" y="36" width="10" height="14" fill="currentColor"/></svg><b>Lojinha</b></button><button class="tile" data-m="calendario"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="34" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><path d="M12 26h40M22 11v10M42 11v10" stroke="currentColor" stroke-width="3"/><rect x="20" y="32" width="7" height="6" fill="currentColor"/><rect x="31" y="32" width="7" height="6" fill="currentColor" opacity=".5"/></svg><b>Calendário</b></button><button class="tile" data-m="financeiro"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="34" width="8" height="16" fill="currentColor" opacity=".5"/><rect x="28" y="24" width="8" height="26" fill="currentColor"/><rect x="42" y="14" width="8" height="36" fill="currentColor" opacity=".75"/><path d="M10 52h44" stroke="currentColor" stroke-width="3"/></svg><b>Financeiro</b></button><button class="tile" data-m="escalas"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="22" cy="24" r="7" fill="currentColor"/><circle cx="42" cy="24" r="7" fill="currentColor" opacity=".5"/><path d="M10 50c0-8 6-13 12-13s12 5 12 13M30 50c0-8 6-13 12-13s12 5 12 13" fill="none" stroke="currentColor" stroke-width="3"/></svg><b>Escalas</b></button><button class="tile off" data-m="alimentacao"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 34h40a20 14 0 0 1-40 0z" fill="currentColor" opacity=".35"/><path d="M12 34h40a20 14 0 0 1-40 0z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M26 26c0-4 4-4 4-8M36 26c0-4 4-4 4-8" stroke="currentColor" stroke-width="3" fill="none"/></svg><b>Alimentação</b><small>em breve</small></button><button class="tile off" data-m="eventos"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 10l6 14 15 1-11 10 4 15-14-8-14 8 4-15-11-10 15-1z" fill="currentColor" opacity=".8"/></svg><b>Eventos</b><small>em breve</small></button><button class="tile" data-m="fotos"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="18" width="44" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="34" r="8" fill="currentColor"/><rect x="22" y="12" width="20" height="8" rx="2" fill="currentColor" opacity=".5"/></svg><b>Fotos</b></button><button class="tile off" data-m="material"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 50l8-24 10 14 6-8 12 18z" fill="currentColor" opacity=".5"/><rect x="10" y="12" width="44" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="42" cy="22" r="4" fill="currentColor"/></svg><b>Material gráfico</b><small>em breve</small></button></div></section>
+  <section id="v-home"><div class="tiles"><button class="tile" data-m="lojinha"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 26h44l-4-12H14z" fill="currentColor" opacity=".35"/><rect x="14" y="26" width="36" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="3"/><rect x="27" y="36" width="10" height="14" fill="currentColor"/></svg><b>Lojinha</b></button><button class="tile" data-m="calendario"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="34" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><path d="M12 26h40M22 11v10M42 11v10" stroke="currentColor" stroke-width="3"/><rect x="20" y="32" width="7" height="6" fill="currentColor"/><rect x="31" y="32" width="7" height="6" fill="currentColor" opacity=".5"/></svg><b>Calendário</b></button><button class="tile" data-m="financeiro"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="34" width="8" height="16" fill="currentColor" opacity=".5"/><rect x="28" y="24" width="8" height="26" fill="currentColor"/><rect x="42" y="14" width="8" height="36" fill="currentColor" opacity=".75"/><path d="M10 52h44" stroke="currentColor" stroke-width="3"/></svg><b>Financeiro</b></button><button class="tile" data-m="escalas"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="22" cy="24" r="7" fill="currentColor"/><circle cx="42" cy="24" r="7" fill="currentColor" opacity=".5"/><path d="M10 50c0-8 6-13 12-13s12 5 12 13M30 50c0-8 6-13 12-13s12 5 12 13" fill="none" stroke="currentColor" stroke-width="3"/></svg><b>Escalas</b></button><button class="tile" data-m="alimentacao"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 34h40a20 14 0 0 1-40 0z" fill="currentColor" opacity=".35"/><path d="M12 34h40a20 14 0 0 1-40 0z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M26 26c0-4 4-4 4-8M36 26c0-4 4-4 4-8" stroke="currentColor" stroke-width="3" fill="none"/></svg><b>Alimentação</b></button><button class="tile" data-m="fotos"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="18" width="44" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="34" r="8" fill="currentColor"/><rect x="22" y="12" width="20" height="8" rx="2" fill="currentColor" opacity=".5"/></svg><b>Fotos</b></button><button class="tile" data-m="material"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 50l8-24 10 14 6-8 12 18z" fill="currentColor" opacity=".5"/><rect x="10" y="12" width="44" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="42" cy="22" r="4" fill="currentColor"/></svg><b>Material gráfico</b></button></div></section>
   <section id="v-fotos" hidden><h2 class="subtit">Fotos</h2><div class="tiles" style="max-width:420px"><button class="tile off" data-m="fotos-eventos"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 10l6 14 15 1-11 10 4 15-14-8-14 8 4-15-11-10 15-1z" fill="currentColor" opacity=".8"/></svg><b>Por evento</b><small>em breve</small></button><button class="tile off" data-m="fotos-estrutura"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 32L32 14l22 18" fill="none" stroke="currentColor" stroke-width="3"/><rect x="18" y="30" width="28" height="20" fill="currentColor" opacity=".4"/><rect x="28" y="38" width="8" height="12" fill="currentColor"/></svg><b>Estrutura</b><small>em breve</small></button></div></section>
   <div class="toast" id="toast" role="status"></div>
   <div class="dlg" id="gate" role="dialog" aria-modal="true" aria-labelledby="g-tit"><form class="dbox" id="g-form"><h2 id="g-tit">Senha do sistema</h2><p class="status" style="justify-content:center">Só na primeira vez neste aparelho.</p>
@@ -416,6 +444,12 @@ input.campo{width:100%;max-width:220px;min-height:40px;border:2px solid #b5860f;
       <p class="status" style="justify-content:center;margin:10px 0 0">Confira o valor no extrato antes de registrar.</p>
     </div>
   </div>
+  <section id="v-ali" hidden><nav class="sub" id="ali-sub" aria-label="Alimentação"><button data-a="card" aria-current="page">Cardápio</button><button data-a="lista">Lista de compras</button><button data-a="imp">Cardápio pronto</button><button data-a="pao">Pão</button><button data-a="pizza">Pizza</button></nav><div id="ali-box"></div></section>
+  <section id="v-mat" hidden><h2 class="subtit">Material gráfico</h2><div class="mats">
+    <a class="matc" href="https://claude.ai/artifact/KnRNmwLcMLMr95a2kWXQ5A" target="_blank" rel="noopener"><i>🧘</i><b>Retiros de Yoga 2027</b><span>Apresentação para professores e grupos de yoga</span><em>Abrir ›</em></a>
+    <a class="matc" href="https://claude.ai/artifact/MCuygkq56uNBiNvh2Vyrw4" target="_blank" rel="noopener"><i>🍽️</i><b>Fim de semana com chef convidada</b><span>Apresentação para a Amelia</span><em>Abrir ›</em></a>
+    <a class="matc" href="https://docs.google.com/presentation/d/1mPSDG0agjEJeYjfSGG8MX5nhAYQ1PuviHMyzrPBC_oY/edit" target="_blank" rel="noopener"><i>📑</i><b>Retiros de Yoga 2027 · Google Slides</b><span>A versão original, no Drive da fazenda</span><em>Abrir ›</em></a>
+  </div></section>
   <section id="v-outro" hidden><div class="breve"><h2 id="b-tit"></h2><p>Esse módulo entra no sistema nas próximas etapas. Me peça no chat quando quiser começar.</p></div></section>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
@@ -434,9 +468,9 @@ let produtos=[], eventos=[], cart=[], filtro="TODOS", mcp=null, vendas=[];
 /* Navegação entre módulos */
 const nomes={calendario:"Calendário",financeiro:"Financeiro",escalas:"Escalas",alimentacao:"Alimentação",eventos:"Eventos",lojinha:"Lojinha",fotos:"Fotos",financeiro:"Financeiro","fin-grupos":"Financeiro grupos","fin-geral":"Financeiro geral",material:"Material gráfico"};
 const PAI={"fin-grupos":"financeiro","fin-geral":"financeiro"};let telaAtual="home";
-function ir(m){telaAtual=m;$("v-esc").hidden=m!=="escalas";if(m==="escalas")abrirEsc();document.body.dataset.mod=({lojinha:"loja",calendario:"cal",financeiro:"fin","fin-grupos":"fin","fin-geral":"fin",fotos:"fotos",escalas:"esc"})[m]||"";for(const[s,k]of[["v-fin","financeiro"],["v-fin-grupos","fin-grupos"],["v-fin-geral","fin-geral"]])$(s).hidden=m!==k;
+function ir(m){telaAtual=m;$("v-esc").hidden=m!=="escalas";if(m==="escalas")abrirEsc();document.body.dataset.mod=({lojinha:"loja",calendario:"cal",financeiro:"fin","fin-grupos":"fin","fin-geral":"fin",fotos:"fotos",escalas:"esc",alimentacao:"ali",material:"mat"})[m]||"";for(const[s,k]of[["v-fin","financeiro"],["v-fin-grupos","fin-grupos"],["v-fin-geral","fin-geral"]])$(s).hidden=m!==k;
   if(m==="fin-grupos")abrirGrupos();if(m==="fin-geral")abrirGeral();
-  $("v-cal").hidden=m!=="calendario";if(m==="calendario")abrirCal();$("v-home").hidden=m!=="home";$("v-lojinha").hidden=m!=="lojinha";$("v-fotos").hidden=m!=="fotos";$("v-outro").hidden=true;
+  $("v-cal").hidden=m!=="calendario";if(m==="calendario")abrirCal();$("v-home").hidden=m!=="home";$("v-lojinha").hidden=m!=="lojinha";$("v-fotos").hidden=m!=="fotos";$("v-ali").hidden=m!=="alimentacao";if(m==="alimentacao")abrirAli();$("v-mat").hidden=m!=="material";$("v-outro").hidden=true;
   $("crumb").hidden=m==="home";$("crumb-t").textContent=nomes[m]||"";$("b-tit").textContent=nomes[m]||"";try{location.hash=m==="home"?"":m}catch{}window.scrollTo(0,0)}
 let tt;function toast(t){const x=$("toast");x.textContent=t;x.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>x.classList.remove("on"),1800)}
 document.addEventListener("click",e=>{const b=e.target.closest(".tile");if(!b)return;
@@ -772,6 +806,101 @@ const GERAL=[["Resumo","RESUMO"],["Calculadora","CALCULADORA"],["Ano Novo calcul
 let geralSel=0;
 function abrirGeral(){$("fgeral-sub").innerHTML=GERAL.map(([l],i)=>`<button data-g="${i}"${i===geralSel?' aria-current="page"':""}>${l}</button>`).join("");verAba($("fgeral-box"),CONSOLIDADO,GERAL[geralSel][1],GERAL[geralSel][0],CONS_URL)}
 $("fgeral-sub").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;geralSel=+b.dataset.g;abrirGeral()});
+/* ---------- Alimentação ---------- */
+const ALIM="1XEu-scq5ka_5T0EfYdCNRA7VIwYRqrYnqMIuXkl1GB4",ALI_URL="https://docs.google.com/spreadsheets/d/"+ALIM+"/edit";
+let aliSub="card",aliD=null,aliDia=0,aliFila=Promise.resolve(),aliMais=new Set();
+const aliCall=async(t,i={})=>(await mcp.callTool(SRV,t,i,{cache:false})).payload;
+const aliErro=e=>/Operação desconhecida/.test(e&&e.message||"")?"Falta atualizar o código no Apps Script para a Alimentação funcionar.":erroTxt(e);
+function abrirAli(){for(const b of $("ali-sub").children){if(b.dataset.a===aliSub)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")}
+  const box=$("ali-box");if(!mcp){box.innerHTML=`<p class="vazio">Sem conexão.</p>`;return}
+  if(aliSub==="card")carregarCard();if(aliSub==="lista")carregarLista();if(aliSub==="imp")carregarImp();
+  if(aliSub==="pao")verAba(box,ALIM,"PÃO","Pão",ALI_URL);if(aliSub==="pizza")verAba(box,ALIM,"PIZZA","Pizza",ALI_URL)}
+$("ali-sub").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;aliSub=b.dataset.a;abrirAli()});
+async function carregarCard(){const box=$("ali-box");if(!aliD)box.innerHTML=`<p class="vazio">Carregando cardápio…</p>`;
+  try{aliD=await aliCall("ali_cardapio");if(aliDia>=aliD.dias)aliDia=0;desenharCard()}catch(e){box.innerHTML=`<p class="vazio">${esc(aliErro(e))}</p>`}}
+const preenchido=(l,d)=>l.t==="chk"?l.v[d]===true:String(l.v[d]||"").trim()!=="";
+function desenharCard(){const d=aliD,nd=d.dias||0,box=$("ali-box"),y=window.scrollY;
+  let h=`<div class="ali-topo"><label for="ali-ev" style="margin:0">Evento</label><select id="ali-ev">${d.eventos.includes(d.evento)?"":`<option value="">Escolha o evento</option>`}${d.eventos.map(x=>`<option${x===d.evento?" selected":""}>${esc(x)}</option>`).join("")}</select>
+  ${nd?`<p class="ali-datas">${esc(d.inicio)} → ${esc(d.fim)} · ${nd} dia${nd>1?"s":""}</p>`:""}${d.restricoes&&!/nenhuma/i.test(d.restricoes)?`<p class="ali-restr">⚠️ ${esc(d.restricoes)}</p>`:""}
+  <div class="row"><select id="ali-pad" aria-label="Aplicar cardápio padrão"><option value="">Aplicar cardápio padrão…</option><option value="1">Com carne</option><option value="2">Vegetariano</option><option value="3">Vegano</option></select><button class="btn" id="ali-limpar">Limpar cardápio</button>${d.url?`<a class="btn" style="display:inline-flex;align-items:center;text-decoration:none" target="_blank" rel="noopener" href="${esc(d.url)}">Planilha do evento</a>`:""}</div></div>`;
+  if(!nd){box.innerHTML=h+`<p class="vazio">Escolha o evento para montar o cardápio.</p>`;return}
+  h+=`<div class="chips" id="ali-dias">${d.cab.slice(0,nd).map((c,i)=>`<button data-dia="${i}" aria-pressed="${i===aliDia}">${esc(c||"Dia "+(i+1))}</button>`).join("")}</div>`;
+  h+=`<div class="ali-dia">${aliDia>0?`<button class="btn" id="ali-copia">Copiar do dia anterior</button>`:""}<span style="font-size:13px;color:var(--mute)">Tudo que você escolhe aqui já vai pra planilha e entra na lista de compras.</span></div>`;
+  const secs=[];let cur=null;for(const l of d.linhas){if(l.s){cur={s:l.s,ls:[]};secs.push(cur)}else if(cur)cur.ls.push(l)}
+  const D=aliDia;
+  for(const sc of secs){const hora=sc.ls.find(l=>l.b==="Horário"),pes=sc.ls.find(l=>l.b==="Pessoas");
+    const itens=sc.ls.filter(l=>l!==hora&&l!==pes),n=itens.filter(l=>preenchido(l,D)).length;
+    const grupos=[];let g=null,lab="";for(const l of itens){if(l.a)lab=l.a;if(!g||g.lab!==lab||(g.t==="chk")!==(l.t==="chk")){g={lab,t:l.t,ls:[]};grupos.push(g)}g.ls.push(l)}
+    const hsel=hora&&hora.t==="sel"&&hora.ed[D]?`<select class="hora" data-r="${hora.r}" aria-label="Horário">${["",...(d.opcoes[hora.o]||[])].map(o=>`<option${o===hora.v[D]?" selected":""} value="${esc(o)}">${o?esc(o):"horário"}</option>`).join("")}${hora.v[D]&&!(d.opcoes[hora.o]||[]).includes(hora.v[D])?`<option selected>${esc(hora.v[D])}</option>`:""}</select>`:(hora&&hora.v[D]?`<span class="meta">${esc(hora.v[D])}</span>`:"");
+    h+=`<details class="ali-sec" open><summary><h3>${esc(frase(sc.s))}</h3>${hsel}<span class="meta">${pes&&pes.v[D]?esc(pes.v[D])+" pessoas · ":""}${n} ite${n===1?"m":"ns"}</span></summary><div class="ali-body">`;
+    for(const gr of grupos){h+=`<div class="ali-g"><span>${esc(gr.lab)}</span>`;
+      if(gr.t==="chk")h+=`<div class="tg">${gr.ls.map(l=>`<button data-chk="${l.r}" aria-pressed="${l.v[D]===true}"${l.ed[D]?"":" disabled"}>${esc(l.b)}</button>`).join("")}</div>`;
+      else{const k=sc.s+"|"+gr.lab,cheios=gr.ls.filter(l=>preenchido(l,D)),vazios=gr.ls.filter(l=>!preenchido(l,D));
+        const mostra=aliMais.has(k)?gr.ls:[...cheios,...vazios.slice(0,1)];
+        h+=`<div class="slots">${mostra.map(l=>l.t==="sel"?`<select data-r="${l.r}" class="${preenchido(l,D)?"ch":"vz"}" aria-label="${esc(gr.lab)}"${l.ed[D]?"":" disabled"}>${["",...(d.opcoes[l.o]||[])].map(o=>`<option${o===l.v[D]?" selected":""} value="${esc(o)}">${o?esc(o):"+ "+esc(l.b.toLowerCase())}</option>`).join("")}${l.v[D]&&!(d.opcoes[l.o]||[]).includes(l.v[D])?`<option selected>${esc(l.v[D])}</option>`:""}</select>`:`<span>${esc(l.v[D])}</span>`).join("")}</div>`}
+      h+=`</div>`}
+    h+=`</div></details>`}
+  box.innerHTML=h;window.scrollTo(0,y)}
+function aliSalvar(mud){aliFila=aliFila.then(async()=>{try{await aliCall("ali_set",{mud});toast("Salvo ✓")}catch(e){toast(aliErro(e));carregarCard()}});return aliFila}
+$("ali-box").addEventListener("change",async e=>{const t=e.target;if(aliSub!=="card")return;
+  if(t.id==="ali-ev"){if(!t.value)return;$("ali-box").insertAdjacentHTML("afterbegin",`<p class="vazio">Trocando o evento…</p>`);try{aliD=await aliCall("ali_set",{evento:t.value});aliDia=0;desenharCard()}catch(err){toast(aliErro(err));carregarCard()}return}
+  if(t.id==="ali-pad"){const op=t.value;if(!op)return;const nm=t.options[t.selectedIndex].text;
+    if(!confirm(`Aplicar o cardápio padrão ${nm}? Isso substitui o que está escolhido em todos os dias.`)){t.value="";return}
+    t.disabled=true;toast("Aplicando padrão…");try{await aliCall("ali_padrao",{op:+op});toast("Padrão "+nm+" aplicado");carregarCard()}catch(err){toast(aliErro(err));t.disabled=false}return}
+  if(t.matches("select[data-r]")){const r=+t.dataset.r,l=aliD.linhas.find(x=>x.r===r);if(!l)return;const era=preenchido(l,aliDia);l.v[aliDia]=t.value;
+    if(era!==preenchido(l,aliDia)||t.classList.contains("hora"))desenharCard();else t.className=t.value?"ch":"vz";aliSalvar([{r,d:aliDia,v:t.value}])}});
+$("ali-box").addEventListener("click",async e=>{const t=e.target.closest("button");if(!t||!aliD||aliSub!=="card")return;
+  if(t.dataset.dia!==undefined){aliDia=+t.dataset.dia;desenharCard();return}
+  if(t.dataset.chk){const r=+t.dataset.chk,l=aliD.linhas.find(x=>x.r===r);const v=!(l.v[aliDia]===true);l.v[aliDia]=v;t.setAttribute("aria-pressed",v);aliSalvar([{r,d:aliDia,v}]);return}
+  if(t.id==="ali-copia"){const D=aliDia,mud=[];for(const l of aliD.linhas){if(!l.r||!l.ed[D]||l.t==="txt"||l.b==="Pessoas")continue;if(l.v[D]!==l.v[D-1]){l.v[D]=l.v[D-1];mud.push({r:l.r,d:D,v:l.v[D]})}}
+    if(!mud.length){toast("Já está igual ao dia anterior");return}desenharCard();aliSalvar(mud);return}
+  if(t.id==="ali-limpar"){if(!confirm("Limpar o cardápio? Apaga as escolhas e horários de todos os dias."))return;t.disabled=true;try{await aliCall("ali_limpar");toast("Cardápio limpo");carregarCard()}catch(err){toast(aliErro(err));t.disabled=false}}});
+/* lista de compras */
+let aliL=null;const tenhoK=()=>"ali-tenho:"+(aliL&&aliL.evento||"");
+function tenho(){try{return new Set(JSON.parse(localStorage.getItem(tenhoK())||"[]"))}catch{return new Set()}}
+function guardaTenho(s){try{localStorage.setItem(tenhoK(),JSON.stringify([...s]))}catch{}}
+async function carregarLista(){const box=$("ali-box");box.innerHTML=`<p class="vazio">Calculando a lista…</p>`;
+  try{await aliFila;aliL=await aliCall("ali_lista");desenharLista()}catch(e){box.innerHTML=`<p class="vazio">${esc(aliErro(e))}</p>`}}
+const itemTxt=r=>`${r[1]} ${r[2]} ${r[3]}`.replace(/\s+/g," ").trim();
+function textoLista(loc){const tem=tenho(),gs={};for(const r of aliL.itens){if(tem.has(r[3])||(loc&&r[0]!==loc))continue;(gs[r[0]]=gs[r[0]]||[]).push(r)}
+  const ks=Object.keys(gs);if(!ks.length)return"";return[`*Lista de compras · ${aliL.evento}*`,...ks.map(k=>`\n*${k}*\n`+gs[k].map(r=>"• "+itemTxt(r)).join("\n"))].join("\n")}
+function desenharLista(){const L=aliL,box=$("ali-box"),tem=tenho(),P=Object.fromEntries(L.pessoas.map(r=>[r[0],r[1]]));
+  const ed={"Equipe":"equipe","Criança come (% de adulto)":"crianca","Folga":"folga"};
+  let h=`<div class="vtopo"><h2>${esc(L.evento||"Lista de compras")}</h2><div class="row" style="margin:0"><button class="btn" id="ll-rec" aria-label="Atualizar">↻</button></div></div>`;
+  h+=`<div class="ali-kv">${L.pessoas.map(([k,v])=>`<div><small>${esc(k)}</small>${ed[k]?`<input class="campo" data-p="${ed[k]}" value="${esc(v)}" inputmode="decimal" aria-label="${esc(k)}">`:`<b>${esc(v)}</b>`}</div>`).join("")}</div>`;
+  const sem=L.semReceita.filter(x=>!/todos os itens/i.test(x));if(sem.length)h+=`<p class="ali-aviso">Sem receita cadastrada (não entram na lista): ${esc(sem.join(" · "))}</p>`;
+  if(!L.itens.length){box.innerHTML=h+`<p class="vazio">A lista está vazia. Escolha os pratos no Cardápio.</p>`;return}
+  const falta=L.itens.filter(r=>!tem.has(r[3])).length;
+  h+=`<div class="row" style="margin:0 0 12px"><a class="btn pri" id="ll-zap" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;text-decoration:none" href="#">Mandar o que falta no WhatsApp</a><button class="btn" id="ll-copiar">Copiar</button><button class="btn" id="ll-enviar">Enviar lista pra planilha do evento</button></div>
+  <p style="font-size:14px;margin:0 0 10px">Marque o que já tem na despensa: ${falta} de ${L.itens.length} itens pra comprar.</p>`;
+  const gs={};for(const r of L.itens)(gs[r[0]]=gs[r[0]]||[]).push(r);
+  for(const[k,rs]of Object.entries(gs)){const f=rs.filter(r=>!tem.has(r[3])).length;
+    h+=`<div class="lj"><div class="lj-t"><h3>${esc(k)}<small>${f} pra comprar</small></h3><a class="btn" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;text-decoration:none" data-zl="${esc(k)}" href="#">WhatsApp</a></div>
+    ${rs.map(r=>`<label class="it${tem.has(r[3])?" tem":""}"><input type="checkbox" data-it="${esc(r[3])}"${tem.has(r[3])?" checked":""}><b>${esc((r[1]+" "+r[2]).trim())}</b><span>${esc(r[3])}</span></label>`).join("")}</div>`}
+  box.innerHTML=h;atualizaZap()}
+function atualizaZap(){const z=$("ll-zap");if(z)z.href="https://wa.me/?text="+encodeURIComponent(textoLista());for(const a of document.querySelectorAll("[data-zl]"))a.href="https://wa.me/?text="+encodeURIComponent(textoLista(a.dataset.zl))}
+$("ali-box").addEventListener("change",async e=>{if(aliSub!=="lista")return;const t=e.target;
+  if(t.dataset.it!==undefined){const s=tenho();if(t.checked)s.add(t.dataset.it);else s.delete(t.dataset.it);guardaTenho(s);const y=window.scrollY;desenharLista();window.scrollTo(0,y);return}
+  if(t.dataset.p){t.disabled=true;try{await aliCall("ali_pessoas",{campo:t.dataset.p,valor:t.value});toast("Recalculando…");carregarLista()}catch(err){toast(aliErro(err));t.disabled=false}}});
+$("ali-box").addEventListener("click",async e=>{if(aliSub!=="lista"&&aliSub!=="imp")return;const t=e.target.closest("button,a");if(!t)return;
+  if(t.id==="ll-rec"){carregarLista();return}
+  if(t.id==="ll-copiar"){try{await navigator.clipboard.writeText(textoLista());toast("Lista copiada")}catch{toast("Não consegui copiar")}return}
+  if((t.id==="ll-zap"||t.dataset.zl!==undefined)&&!textoLista(t.dataset.zl)){e.preventDefault();toast("Nada pra comprar aqui");return}
+  if(t.id==="ll-enviar"||t.id==="imp-enviar"){const o=t.id==="ll-enviar"?"lista":"cardapio";
+    if(!confirm(o==="lista"?"Isso substitui a aba LISTA DE COMPRAS da planilha do evento. Continuar?":"Isso substitui a aba CARDAPIO da planilha do evento. Continuar?"))return;
+    t.disabled=true;toast("Enviando…");try{const r=await aliCall("ali_enviar",{o});toast((o==="lista"?"Lista":"Cardápio")+" enviado para "+r.evento)}catch(err){toast(aliErro(err))}t.disabled=false;return}
+  if(t.id==="imp-rec"){carregarImp();return}
+  if(t.id==="imp-copiar"){try{await navigator.clipboard.writeText(aliImpTxt);toast("Cardápio copiado")}catch{toast("Não consegui copiar")}}});
+/* cardápio pronto (aba IMPRESSÃO) */
+let aliImpTxt="";const TIT_RE=/^(DESJEJUM|CAFÉ DA MANHÃ|SEGUNDA|TERÇA|QUARTA|QUINTA|SEXTA|SÁBADO|DOMINGO)/;
+async function carregarImp(){const box=$("ali-box");box.innerHTML=`<p class="vazio">Montando o cardápio…</p>`;
+  try{await aliFila;const r=await aliCall("ali_impressao");const ls=r.linhas.filter((x,i,a)=>x||(i>0&&a[i-1]));
+    aliImpTxt=r.linhas.map(x=>TIT_RE.test(x)?`*${x}*`:x).join("\n").replace(/\n{3,}/g,"\n\n").trim();
+    box.innerHTML=`<div class="vtopo"><h2>${esc(r.evento||"Cardápio")}</h2><div class="row" style="margin:0"><button class="btn" id="imp-rec" aria-label="Atualizar">↻</button></div></div>
+    <div class="row" style="margin:0 0 12px"><a class="btn pri" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;text-decoration:none" href="https://wa.me/?text=${encodeURIComponent(aliImpTxt)}">Mandar no WhatsApp</a><button class="btn" id="imp-copiar">Copiar</button><button class="btn" id="imp-enviar">Enviar cardápio pra planilha do evento</button></div>
+    <div class="imp">${ls.length?ls.map(x=>x?`<p${TIT_RE.test(x)?' class="t"':""}>${esc(x)}</p>`:`<p>&nbsp;</p>`).join(""):"<p>O cardápio está vazio.</p>"}</div>`}
+  catch(e){box.innerHTML=`<p class="vazio">${esc(aliErro(e))}</p>`}}
+
 
 /* Financeiro grupos */
 let fg={nivel:"anos",ano:null,pl:null,aba:null,abas:[]};
