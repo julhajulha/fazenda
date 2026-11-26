@@ -915,6 +915,7 @@ $("ali-box").addEventListener("click",async e=>{const t=e.target.closest("button
   if(t.id==="ali-limpar"){if(!confirm("Limpar o cardápio? Apaga as escolhas e horários de todos os dias."))return;t.disabled=true;try{await aliCall("ali_limpar");toast("Cardápio limpo");carregarCard()}catch(err){toast(aliErro(err));t.disabled=false}}});
 /* ---------- Orçamento de grupo ---------- */
 const CASAS=[["loft","Loft",740],["studio","Studio",740],["chalezao","Chalezão",740],["chalezinho","Chalezinho",620]];
+const CASAS_AN={loft:1026,studio:1026,chalezao:1026,chalezinho:906};
 const ORC0={grupo:"",ini:"",fim:"",diarias:2,diaria:360,ref:true,refv:50,ad:20,c712:0,c06:0,soz:0,grat:true,sinal:30,dtipo:"%",dval:0,dmot:"",id:"",st:"Enviado"};
 let orc=(()=>{try{return{...ORC0,...JSON.parse(localStorage.getItem("orc")||"{}")}}catch{return{...ORC0}}})();
 const dBR=s=>s?s.split("-").reverse().join("/"):"";
@@ -922,7 +923,7 @@ function abrirOrc(){const f=$("orc-f"),o=orc,n=(k,l,ex="")=>`<div><label for="o-
   f.innerHTML=`<h3>Grupo</h3><div class="orc-g"><div style="grid-column:1/-1"><label for="o-grupo">Nome do grupo</label><input id="o-grupo" data-o="grupo" value="${esc(o.grupo)}" placeholder="ex.: Retiro de yoga da Ana"></div>
   <div><label for="o-ini">Chegada</label><input id="o-ini" data-o="ini" type="date" value="${esc(o.ini)}"></div><div><label for="o-fim">Saída</label><input id="o-fim" data-o="fim" type="date" value="${esc(o.fim)}"></div>${n("diarias","Diárias")}</div>
   <h3>Pavilhão</h3><div class="orc-g">${n("diaria","Diária por pessoa (R$)")}${n("ad","Adultos (13+)")}${n("c712","Crianças 7 a 12 (50%)")}${n("c06","Crianças até 6 (grátis)")}${n("soz","Sozinhos no quarto (+50%)")}</div>
-  <div class="rapido">${[[360,"R$ 360"],[400,"R$ 400 (yoga 2027)"]].map(([v,l])=>`<button type="button" data-dv="${v}" aria-pressed="${+o.diaria===v}">${l}</button>`).join("")}</div>
+  <div class="rapido">${[[360,"R$ 360"],[400,"R$ 400 (yoga 2027)"],[560,"R$ 560 (Ano Novo)"]].map(([v,l])=>`<button type="button" data-dv="${v}" aria-pressed="${+o.diaria===v}">${l}</button>`).join("")}</div>
   <label class="ck"><input type="checkbox" data-o="ref"${o.ref?" checked":""}> A diária já inclui as 3 refeições</label>
   ${o.ref?"":`<div class="orc-g" style="margin-top:6px">${n("refv","Valor por refeição (R$)")}</div>`}
   <label class="ck"><input type="checkbox" data-o="grat"${o.grat?" checked":""}> 1 gratuidade a cada 10 pagantes</label>
@@ -960,7 +961,7 @@ $("orc-f").addEventListener("input",e=>{const t=e.target;
     if((k==="ini"||k==="fim")&&orc.ini&&orc.fim){const n=Math.round((new Date(orc.fim)-new Date(orc.ini))/864e5);if(n>0){orc.diarias=n;$("o-diarias").value=n}}
     if(t.type==="checkbox"){abrirOrc();return}calcOrc();return}
   if(t.dataset.casa){const k="c_"+t.dataset.casa,c=orc[k]=orc[k]||{on:false,ad:2,cr:0,ref:false};c[t.dataset.f]=t.type==="checkbox"?t.checked:t.value;if(t.type==="checkbox")abrirOrc();else calcOrc()}});
-$("orc-f").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.dv){orc.diaria=+b.dataset.dv;abrirOrc();toast("Diária de R$ "+b.dataset.dv)}if(b.dataset.dt){orc.dtipo=b.dataset.dt;abrirOrc()}if(b.id==="o-limpa"){orc={...ORC0};abrirOrc()}if(b.id==="o-salvar")salvarOrc(false);if(b.id==="o-copia")salvarOrc(true)});
+$("orc-f").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.dv){const dv=+b.dataset.dv,an=dv===560;orc.diaria=dv;for(const[k,,v0]of CASAS){const c=orc["c_"+k]=orc["c_"+k]||{on:false,ad:2,cr:0,ref:false};c.v=an?CASAS_AN[k]:v0}abrirOrc();toast(an?"Valores de Ano Novo: pavilhão R$ 560 e casas atualizadas":"Diária de R$ "+dv)}if(b.dataset.dt){orc.dtipo=b.dataset.dt;abrirOrc()}if(b.id==="o-limpa"){orc={...ORC0};abrirOrc()}if(b.id==="o-salvar")salvarOrc(false);if(b.id==="o-copia")salvarOrc(true)});
 /* ---------- Orçamentos salvos ---------- */
 const OABA="ORÇAMENTOS";let osL=(()=>{try{return JSON.parse(localStorage.getItem("orc_salvos")||"[]")}catch{return[]}})(),osQ="",osF="Todos",osNuvem=null;
 const OST=["Enviado","Fechado","Não fechou"];
