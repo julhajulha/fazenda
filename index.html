@@ -307,6 +307,13 @@ body[data-mod=man] main{--ink:#fff;--mute:rgb(255 255 255 / .8);--line:rgb(255 2
 .vg-t{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}.vg-t b{font-size:17px}.vg-t span{font-size:12px;color:#5f6661}
 .vg ul{list-style:none;margin:0;padding:0;display:grid;gap:3px}.vg li{display:grid;grid-template-columns:2em minmax(0,1fr) auto;gap:6px;font-size:15px}.vg li .q{font-weight:700;text-align:right}.vg li .vl{color:#5f6661;font-size:13px;font-variant-numeric:tabular-nums}.vg li.hl .nm{font-weight:700;color:#1d3a2c}
 .vg-f{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid #eee;padding-top:8px;margin-top:auto}.vg-f b{font-size:16px}
+.mapa-imp{background:#fff;color:#111;border-radius:6px;padding:clamp(6px,1.5vw,14px);max-width:1040px;overflow-x:auto}
+table.mapa{width:100%;table-layout:fixed;border-collapse:collapse;border:1px solid #333;border-radius:0;font-family:Calibri,"DM Sans",Arial,sans-serif;background:#fff}
+.mapa th{font-size:clamp(17px,2vw,22px);font-weight:700;text-align:center;padding:12px;border:1px solid #333;color:#111}
+.mapa td{border:1px solid #333;text-align:center;vertical-align:middle;height:clamp(52px,6vw,62px);padding:4px 8px;color:#111}
+.mapa td.mn{width:13%}.mapa td.mn b{display:block;font-size:clamp(22px,2.8vw,30px);line-height:1}.mapa td.mn small{display:block;font-size:11px;color:#333}
+.mapa td.mq{width:37%;font-size:clamp(12px,1.4vw,17px);overflow-wrap:anywhere}@media(max-width:600px){.mapa td.mn small{font-size:8px}.mapa td{padding:3px 4px}.mapa th{font-size:15px}}.mapa-x{font-size:14px;margin:10px 4px 0}
+@media print{body.imprimindo *{visibility:hidden!important}body.imprimindo .mapa-imp,body.imprimindo .mapa-imp *{visibility:visible!important}body.imprimindo .mapa-imp{position:absolute;left:0;top:0;width:100%;max-width:none;padding:0}body.imprimindo{background:#fff!important}}
 .breve{background:var(--card);border:1px dashed var(--line);border-radius:18px;padding:40px 24px;text-align:center;color:var(--mute)}
 .breve h2{color:var(--ink);margin-bottom:8px}
 @media(max-width:860px){.caixa{grid-template-columns:minmax(0,1fr)}.comanda{position:static}}
@@ -708,7 +715,7 @@ async function verAba(box,id,aba,titulo,url){
   const ehES=id===CONSOLIDADO&&aba==="ENTRADAS E SAIDAS";
   box.innerHTML=`<div class="vtopo"><h2>${esc(titulo||aba)}</h2><div class="row" style="margin:0">${ehES?'<button class="btn ok" data-lancar="1">+ Lançar</button>':""}<button class="btn" data-recarrega="1" aria-label="Atualizar">↻</button>${url?`<a class="btn" style="display:inline-flex;align-items:center;text-decoration:none" target="_blank" rel="noopener" href="${esc(url)}">Abrir planilha</a>`:""}</div></div><div class="msg" role="status"></div><form class="cform" data-lform hidden></form><div class="vcorpo"><p class="vazio">Carregando…</p></div>`;
   const corpo=box.querySelector(".vcorpo"),msgb=box.querySelector(".msg");let dados=null;
-  const carregar=async()=>{try{const r=await mcp.callTool(SRV,"fin_aba",{id,aba},{cache:false});dados=r.payload;(ehES?telaES:telaApp)(corpo,dados)}catch(e){corpo.innerHTML=`<p class="vazio">${esc(/Operação desconhecida/.test(e.message||"")?"Falta atualizar o código no Apps Script para ler o financeiro.":erroTxt(e))}</p>`}};
+  const carregar=async()=>{try{const r=await mcp.callTool(SRV,"fin_aba",{id,aba},{cache:false});dados=r.payload;(ehES?telaES:/^MAPA IMPRESS/i.test(aba)?telaMapa:telaApp)(corpo,dados)}catch(e){corpo.innerHTML=`<p class="vazio">${esc(/Operação desconhecida/.test(e.message||"")?"Falta atualizar o código no Apps Script para ler o financeiro.":erroTxt(e))}</p>`}};
   box.querySelector("[data-recarrega]").addEventListener("click",carregar);
   const bl=box.querySelector("[data-lancar]");if(bl)bl.addEventListener("click",()=>formLancar(box.querySelector("[data-lform]"),msgb,carregar));
   corpo.addEventListener("change",async e=>{const ip=e.target.closest("input[data-l]");if(!ip)return;ip.disabled=true;msgb.textContent="Salvando e recalculando…";msgb.className="msg ok";
@@ -718,6 +725,18 @@ async function verAba(box,id,aba,titulo,url){
   corpo.addEventListener("click",e=>{const c=e.target.closest(".lc[data-abre]");if(c&&!e.target.closest("input"))c.classList.toggle("aberto")});
   if(!mcp){corpo.innerHTML=`<p class="vazio">Sem conexão.</p>`;return}carregar()}
 
+
+/* Mapa dos quartos no formato de impressão */
+const ehNum=c=>/^\s*\d{1,2}\b/.test(String(c||""));
+function numCel(c){const[n,...r]=String(c).split("\n");return`<b>${esc(n.trim())}</b>${r.length?`<small>${esc(r.join(" ").trim())}</small>`:""}`}
+function telaMapa(corpo,d){const V=d.valores||[];let tit="",h="",extra=[];
+  for(const r of V){const idx=r.map((c,j)=>ehNum(c)?j:-1).filter(j=>j>=0);
+    if(idx.length>=2){const L=idx[0],R=idx[idx.length-1],mid=(L+R)/2,esq=[],dir=[];for(let j=L+1;j<R;j++){const c=String(r[j]||"").trim();if(c)(j<=mid?esq:dir).push(c)}
+      h+=`<tr><td class="mn">${numCel(r[L])}</td><td class="mq">${esc(esq.join(" "))}</td><td class="mq">${esc(dir.join(" "))}</td><td class="mn">${numCel(r[R])}</td></tr>`}
+    else{const t=r.map(c=>String(c||"").trim()).filter(Boolean);if(!t.length)continue;if(!tit&&!h)tit=t.join(" ");else extra.push(t.join(" · "))}}
+  if(!h){telaApp(corpo,d);return}
+  corpo.innerHTML=`<div class="row" style="margin:0 0 10px"><button class="btn pri" data-imprime>Imprimir</button></div><div class="mapa-imp"><table class="mapa"><thead><tr><th colspan="4">${esc(tit||"Mapa dos quartos")}</th></tr></thead><tbody>${h}</tbody></table>${extra.length?`<p class="mapa-x">${extra.map(esc).join("<br>")}</p>`:""}</div>`;
+  corpo.querySelector("[data-imprime]").onclick=()=>{document.body.classList.add("imprimindo");window.print();setTimeout(()=>document.body.classList.remove("imprimindo"),500)}}
 /* ---- transforma uma aba em telas de app ---- */
 const frase=t=>{const s=String(t).trim();if(s!==s.toUpperCase())return s;const l=s.toLowerCase();return l.charAt(0).toUpperCase()+l.slice(1)};
 const MES_RE=/^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)/i;
