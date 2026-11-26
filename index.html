@@ -274,7 +274,7 @@ input.campo{width:100%;max-width:220px;min-height:40px;border:2px solid #b5860f;
   <section id="v-esc" hidden>
     <div class="pay esc-modo" id="esc-modo" style="max-width:260px;margin-bottom:12px"><button data-v="semana" aria-pressed="true">Semana</button><button data-v="mes" aria-pressed="false">Mês</button></div>
     <div class="calbar"><button class="btn" id="esc-prev" aria-label="Anterior">‹</button><h2 id="esc-tit" style="min-width:9em"></h2><button class="btn" id="esc-next" aria-label="Próximo">›</button><button class="btn" id="esc-hoje">Hoje</button></div>
-    <div class="row" style="margin:0 0 12px"><a class="btn pri" id="esc-zap" target="_blank" rel="noopener" href="#" style="display:inline-flex;align-items:center;text-decoration:none">Enviar escala da cozinha</a><button class="btn" id="esc-copiar">Copiar texto</button><button class="btn" id="esc-repetir">Repetir cozinha da semana anterior</button></div>
+    <div class="row" style="margin:0 0 12px"><a class="btn pri" id="esc-zap" target="_blank" rel="noopener" href="#" style="display:inline-flex;align-items:center;text-decoration:none">Enviar escala do interno</a><button class="btn" id="esc-copiar">Copiar texto</button><button class="btn" id="esc-repetir">Repetir interno da semana anterior</button></div>
     <div class="msg" id="esc-msg" role="status"></div>
     <div class="semana" id="esc-dias"><p class="vazio">Carregando…</p></div>
     <div id="esc-mes" hidden></div>
@@ -557,9 +557,9 @@ function diaInfo(d){const k=ymd(d),dw=DSEM[d.getDay()];const evs=escD.eventos.fi
 function desenharMes(){const g=iniGrade(),hj=ymd(new Date());let html=["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"].map(d=>`<div class="dow">${d}</div>`).join("");
   for(let i=0;i<42;i++){const d=addD(g,i),x=diaInfo(d);const ln=(c,l,ns)=>ns.length?`<div class="ln ${c}"><b>${l}</b> ${esc(ns.join(", "))}</div>`:"";
     html+=`<div class="d${d.getMonth()!==escMes.getMonth()?" fora":""}${x.k===hj?" hj":""}" data-dia="${x.k}"><span class="n">${d.getDate()}</span>${x.evs.map(e=>`<span class="ev" title="${esc(e.titulo)}">${esc(e.titulo)}</span>`).join("")}
-      ${ln("lg","G",x.ger)}${ln("le","E",x.fixos)}${ln("lc2","C",x.cz)}
-      <span class="dots">${x.ger.length?'<i style="background:#3f4a8a"></i>':""}${x.fixos.length?'<i style="background:#999"></i>':""}${x.cz.length?'<i style="background:#3d0d16"></i>':""}</span></div>`}
-  $("esc-mes").innerHTML=`<div class="esc-leg"><span><b>G</b> gerência</span><span><b>E</b> equipe fixa</span><span><b>C</b> cozinha</span><span>Toque num dia para ver e editar a semana</span></div><div class="mes-e">${html}</div>`}
+      ${ln("lc2","I",x.cz)}${ln("le","E",x.fixos)}${ln("lg","G",x.ger)}
+      <span class="dots">${x.cz.length?'<i style="background:#3d0d16"></i>':""}${x.fixos.length?'<i style="background:#999"></i>':""}${x.ger.length?'<i style="background:#3f4a8a"></i>':""}</span></div>`}
+  $("esc-mes").innerHTML=`<div class="esc-leg"><span><b>I</b> interno</span><span><b>E</b> externo</span><span><b>G</b> gerência</span><span>Toque num dia para ver e editar a semana</span></div><div class="mes-e">${html}</div>`}
 $("esc-mes").addEventListener("click",e=>{const c=e.target.closest("[data-dia]");if(!c)return;const d=pd(c.dataset.dia);escSeg=addD(d,-((d.getDay()+6)%7));escModo="semana";
   for(const x of $("esc-modo").children)x.setAttribute("aria-pressed",x.dataset.v==="semana");abrirEsc()});
 function textoZap(){const ls=["*ESCALA*",""];for(let i=0;i<7;i++){const d=addD(escSeg,i),x=diaInfo(d);if(!x.cz.length)continue;ls.push(`*${DZAP[d.getDay()]}*`,...x.cz.map(n=>semAc(n).toUpperCase()),"")}return ls.length>2?ls.join("\n").trim():""}
@@ -567,11 +567,11 @@ function desenharEsc(){const hj=ymd(new Date());let html="";
   for(let i=0;i<7;i++){const d=addD(escSeg,i),x=diaInfo(d),ed=escEdit===x.k;
     html+=`<div class="dia-c${x.k===hj?" hj":""}"><h3>${DNOME[d.getDay()]}<small>${d.getDate()}/${d.getMonth()+1}</small></h3>
       ${x.evs.map(e=>`<div class="ev-tag">${esc(e.titulo)}</div>`).join("")}
-      ${x.ger.length?`<div class="esc-g"><span>Gerência</span><div class="pes">${x.ger.map(n=>`<i class="g">${esc(n)}</i>`).join("")}</div></div>`:""}
-      ${x.fixos.length?`<div class="esc-g"><span>Equipe</span><div class="pes">${x.fixos.map(n=>`<i class="f">${esc(n)}</i>`).join("")}</div></div>`:""}
-      <div class="esc-g"><span>Cozinha</span>${ed?`<div class="picker" data-k="${x.k}">${[...new Set([...escD.equipe,...x.cz])].map(n=>`<button type="button" aria-pressed="${x.cz.includes(n)}">${esc(n)}</button>`).join("")}<input placeholder="+ outra pessoa" aria-label="Outra pessoa"></div>
+      <div class="esc-g"><span>Interno</span>${ed?`<div class="picker" data-k="${x.k}">${[...new Set([...escD.equipe,...x.cz])].map(n=>`<button type="button" aria-pressed="${x.cz.includes(n)}">${esc(n)}</button>`).join("")}<input placeholder="+ outra pessoa" aria-label="Outra pessoa"></div>
         <div class="row" style="margin:4px 0 0"><button class="btn" data-esc-cancel="1">Cancelar</button><button class="btn ok" data-esc-salvar="${x.k}">Salvar</button></div>`
-        :`<div class="pes">${x.cz.length?x.cz.map(n=>`<i>${esc(n)}</i>`).join(""):'<span class="vz">Ninguém escalado</span>'}</div><button class="edit" data-esc-editar="${x.k}">${x.cz.length?"Editar":"Escalar"}</button>`}</div></div>`}
+        :`<div class="pes">${x.cz.length?x.cz.map(n=>`<i>${esc(n)}</i>`).join(""):'<span class="vz">Ninguém escalado</span>'}</div><button class="edit" data-esc-editar="${x.k}">${x.cz.length?"Editar":"Escalar"}</button>`}</div>
+      ${x.fixos.length?`<div class="esc-g"><span>Externo</span><div class="pes">${x.fixos.map(n=>`<i class="f">${esc(n)}</i>`).join("")}</div></div>`:""}
+      ${x.ger.length?`<div class="esc-g"><span>Gerência</span><div class="pes">${x.ger.map(n=>`<i class="g">${esc(n)}</i>`).join("")}</div></div>`:""}</div>`}
   $("esc-dias").innerHTML=html;const t=textoZap();$("esc-zap").href=t?zap(t):"#";$("esc-zap").style.opacity=t?1:.5}
 $("esc-dias").addEventListener("click",async e=>{const t=e.target;
   if(t.closest("[data-esc-editar]")){escEdit=t.closest("[data-esc-editar]").dataset.escEditar;desenharEsc();return}
