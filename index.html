@@ -916,7 +916,7 @@ $("ali-box").addEventListener("click",async e=>{const t=e.target.closest("button
 /* ---------- Orçamento de grupo ---------- */
 const CASAS=[["loft","Loft",740],["studio","Studio",740],["chalezao","Chalezão",740],["chalezinho","Chalezinho",620]];
 const CASAS_AN={loft:1026,studio:1026,chalezao:1026,chalezinho:906};
-const ORC0={grupo:"",ini:"",fim:"",diarias:2,diaria:360,ref:true,refv:50,ad:20,c712:0,c06:0,soz:0,grat:true,sinal:30,dtipo:"%",dval:0,dmot:"",id:"",st:"Enviado"};
+const ORC0={grupo:"",ini:"",fim:"",diarias:2,diaria:360,ref:true,refv:50,ad:20,c712:0,c06:0,soz:0,grat:true,limp:170,sinal:30,dtipo:"%",dval:0,dmot:"",id:"",st:"Enviado"};
 let orc=(()=>{try{return{...ORC0,...JSON.parse(localStorage.getItem("orc")||"{}")}}catch{return{...ORC0}}})();
 const dBR=s=>s?s.split("-").reverse().join("/"):"";
 function abrirOrc(){const f=$("orc-f"),o=orc,n=(k,l,ex="")=>`<div><label for="o-${k}">${l}</label><input id="o-${k}" data-o="${k}" type="number" min="0" step="any" inputmode="decimal" value="${esc(o[k])}"${ex}></div>`;
@@ -927,7 +927,7 @@ function abrirOrc(){const f=$("orc-f"),o=orc,n=(k,l,ex="")=>`<div><label for="o-
   <label class="ck"><input type="checkbox" data-o="ref"${o.ref?" checked":""}> A diária já inclui as 3 refeições</label>
   ${o.ref?"":`<div class="orc-g" style="margin-top:6px">${n("refv","Valor por refeição (R$)")}</div>`}
   <label class="ck"><input type="checkbox" data-o="grat"${o.grat?" checked":""}> 1 gratuidade a cada 10 pagantes</label>
-  <h3>Casas</h3>${CASAS.map(([k,l,v])=>{const c=o["c_"+k]||{on:false,ad:2,cr:0,ref:false,v};return`<div class="casa${c.on?" on":""}"><label class="ck"><input type="checkbox" data-casa="${k}" data-f="on"${c.on?" checked":""}> ${l}</label>${c.on?`<div class="orc-g"><div><label>Diária até 2 pessoas (R$)</label><input type="number" data-casa="${k}" data-f="v" value="${esc(c.v??v)}"></div><div><label>Adultos</label><input type="number" min="0" data-casa="${k}" data-f="ad" value="${esc(c.ad)}"></div><div><label>Crianças 7 a 12</label><input type="number" min="0" data-casa="${k}" data-f="cr" value="${esc(c.cr)}"></div></div><label class="ck"><input type="checkbox" data-casa="${k}" data-f="ref"${c.ref?" checked":""}> Com refeições (R$ ${o.refv||50} por refeição)</label>`:""}</div>`}).join("")}
+  <h3>Casas</h3><div class="orc-g">${n("limp","Limpeza por estadia (R$)")}</div>${CASAS.map(([k,l,v])=>{const c=o["c_"+k]||{on:false,ad:2,cr:0,ref:false,v};return`<div class="casa${c.on?" on":""}"><label class="ck"><input type="checkbox" data-casa="${k}" data-f="on"${c.on?" checked":""}> ${l}</label>${c.on?`<div class="orc-g"><div><label>Diária até 2 pessoas (R$)</label><input type="number" data-casa="${k}" data-f="v" value="${esc(c.v??v)}"></div><div><label>Adultos</label><input type="number" min="0" data-casa="${k}" data-f="ad" value="${esc(c.ad)}"></div><div><label>Crianças 7 a 12</label><input type="number" min="0" data-casa="${k}" data-f="cr" value="${esc(c.cr)}"></div></div><label class="ck"><input type="checkbox" data-casa="${k}" data-f="ref"${c.ref?" checked":""}> Com refeições (R$ ${o.refv||50} por refeição)</label>`:""}</div>`}).join("")}
   <h3>Desconto</h3><div class="odesc"><div class="seg" role="group" aria-label="Tipo de desconto"><button type="button" data-dt="%" aria-pressed="${o.dtipo!=="R$"}">%</button><button type="button" data-dt="R$" aria-pressed="${o.dtipo==="R$"}">R$</button></div>${n("dval",o.dtipo==="R$"?"Desconto (R$)":"Desconto (%)")}<div style="grid-column:1/-1"><label for="o-dmot">Motivo (opcional)</label><input id="o-dmot" data-o="dmot" value="${esc(o.dmot)}" placeholder="ex.: grupo que volta todo ano"></div></div>
   <h3>Sinal</h3><div class="orc-g">${n("sinal","Sinal (%)")}</div>
   <button type="button" class="osalvar" id="o-salvar">${o.id?"Salvar alterações":"Salvar orçamento"}</button><p class="osalvo" id="o-salvo">${o.id?`Editando um orçamento salvo · <button type="button" class="ghost" id="o-copia" style="margin:0;padding:0">salvar como novo</button>`:""}</p>
@@ -941,6 +941,7 @@ function contaOrc(){const o=orc,D=+o.diarias||0,dv=+o.diaria||0,rv=+o.refv||50,L
   let casasP=0;for(const[k,l,v0]of CASAS){const c=o["c_"+k];if(!c||!c.on)continue;const a=+c.ad||0,cr=+c.cr||0,v=+(c.v??v0)||0;
     const extraA=Math.max(0,a-2),sobra=Math.max(0,2-a),extraC=Math.max(0,cr-sobra);let d=v+extraA*v*.5+extraC*v*.25;
     const val=d*D;L.push([`${l}: ${a} adulto${a===1?"":"s"}${cr?` + ${cr} criança${cr>1?"s":""}`:""} × ${D}`,val]);tot+=val;casasP+=a+cr;
+    const lp=+(o.limp??170)||0;if(lp){L.push([`Limpeza ${l}`,lp]);tot+=lp}
     if(c.ref){const r=(a+cr*.5)*3*rv*D;L.push([`Refeições ${l}`,r]);tot+=r}}
   const pag=ad+c7;let grat=0;if(o.grat&&ad>=10){grat=Math.floor(ad/10);const v=grat*dv*D;L.push([`${grat} gratuidade${grat>1?"s":""} (1 a cada 10 pagantes)`,-v]);tot-=v}
   const dv2=Math.max(0,+o.dval||0);if(dv2&&tot>0){const v=Math.min(tot,o.dtipo==="R$"?dv2:tot*dv2/100);L.push([`Desconto${o.dtipo==="R$"?"":` de ${dv2}%`}${o.dmot?` (${o.dmot})`:""}`,-v]);tot-=v}
