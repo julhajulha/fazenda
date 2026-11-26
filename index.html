@@ -7,6 +7,7 @@
 <title>Fazenda da Serra</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1d3a2c">
+<meta name="color-scheme" content="light">
 <link rel="apple-touch-icon" href="icone-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -26,7 +27,7 @@
 --mute:light-dark(#5f6661,#a9b1ab);--line:light-dark(#e3e6e2,#2c3630);
 --cacau:light-dark(#1d3a2c,#0b1510);--jabu:light-dark(#b5860f,#d9a92a);--jabu-bg:light-dark(#fbf3dc,#33290f);--on:#111111;
 --folha:light-dark(#1d3a2c,#3f7a5c);--folha-bg:light-dark(#e6efe9,#1a2e23)}
-:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+:root,:root[data-theme=light],:root[data-theme=dark]{color-scheme:light!important}
 *{box-sizing:border-box;min-width:0}[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--ink);font:clamp(15px,.35vw + 13.5px,17px)/1.5 "DM Sans",system-ui,sans-serif;overflow-x:clip}
 h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;margin:0;line-height:1.1}
