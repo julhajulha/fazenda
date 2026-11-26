@@ -1354,7 +1354,7 @@ function senha(){try{return localStorage.getItem("senha")||""}catch{return windo
 function pedirSenha(m){$("gate").classList.add("on");$("g-msg").textContent=m||"";$("g-msg").className=m?"msg err":"msg";setTimeout(()=>$("g-pin").focus(),50)}
 $("g-form").addEventListener("submit",e=>{e.preventDefault();const v=$("g-pin").value.trim();if(!v)return;try{localStorage.setItem("senha",v)}catch{window._senha=v}$("gate").classList.remove("on");iniciar()});
 if(senha())iniciar();else pedirSenha();
-if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(r=>{r.update();document.addEventListener("visibilitychange",()=>{if(!document.hidden)r.update()})}).catch(()=>{});let rec=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(rec)return;rec=true;location.reload()})}
 }
 </script>
 </body>
