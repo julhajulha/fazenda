@@ -557,7 +557,7 @@ function diaInfo(d){const k=ymd(d),dw=DSEM[d.getDay()];const evs=escD.eventos.fi
 function desenharMes(){const g=iniGrade(),hj=ymd(new Date());let html=["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"].map(d=>`<div class="dow">${d}</div>`).join("");
   for(let i=0;i<42;i++){const d=addD(g,i),x=diaInfo(d);const ln=(c,l,ns)=>ns.length?`<div class="ln ${c}"><b>${l}</b> ${esc(ns.join(", "))}</div>`:"";
     html+=`<div class="d${d.getMonth()!==escMes.getMonth()?" fora":""}${x.k===hj?" hj":""}" data-dia="${x.k}"><span class="n">${d.getDate()}</span>${x.evs.map(e=>`<span class="ev" title="${esc(e.titulo)}">${esc(e.titulo)}</span>`).join("")}
-      ${ln("lg","G",x.ger)}${ln("le","E",x.fixos.map(f=>f.replace(" (manhã)"," ☀")))}${ln("lc2","C",x.cz)}
+      ${ln("lg","G",x.ger)}${ln("le","E",x.fixos)}${ln("lc2","C",x.cz)}
       <span class="dots">${x.ger.length?'<i style="background:#3f4a8a"></i>':""}${x.fixos.length?'<i style="background:#999"></i>':""}${x.cz.length?'<i style="background:#3d0d16"></i>':""}</span></div>`}
   $("esc-mes").innerHTML=`<div class="esc-leg"><span><b>G</b> gerência</span><span><b>E</b> equipe fixa</span><span><b>C</b> cozinha</span><span>Toque num dia para ver e editar a semana</span></div><div class="mes-e">${html}</div>`}
 $("esc-mes").addEventListener("click",e=>{const c=e.target.closest("[data-dia]");if(!c)return;const d=pd(c.dataset.dia);escSeg=addD(d,-((d.getDay()+6)%7));escModo="semana";
