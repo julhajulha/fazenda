@@ -302,6 +302,11 @@ body[data-mod=man] main{--ink:#fff;--mute:rgb(255 255 255 / .8);--line:rgb(255 2
 .tbf .lg{grid-column:1/-1}.tbf .row{grid-column:1/-1;margin-top:8px}
 .ctt-b{display:flex;gap:6px;flex-wrap:wrap}.ctt-b a,.ctt-b button{min-height:34px;font-size:13px;border-radius:10px;border:1px solid #e3e6e2;background:#fbfaf8;color:#111;padding:0 10px;display:inline-flex;align-items:center;text-decoration:none}
 .ctt-b .z{background:#1d3a2c;color:#fff;border-color:#1d3a2c}.pixv{font-size:13px;color:#333;overflow-wrap:anywhere}.falta{color:#b5860f;font-size:12px}
+.vgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:10px}
+.vg{background:#fff;color:#111;border:1px solid #e3e6e2;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.vg-t{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}.vg-t b{font-size:17px}.vg-t span{font-size:12px;color:#5f6661}
+.vg ul{list-style:none;margin:0;padding:0;display:grid;gap:3px}.vg li{display:grid;grid-template-columns:2em minmax(0,1fr) auto;gap:6px;font-size:15px}.vg li .q{font-weight:700;text-align:right}.vg li .vl{color:#5f6661;font-size:13px;font-variant-numeric:tabular-nums}.vg li.hl .nm{font-weight:700;color:#1d3a2c}
+.vg-f{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid #eee;padding-top:8px;margin-top:auto}.vg-f b{font-size:16px}
 .breve{background:var(--card);border:1px dashed var(--line);border-radius:18px;padding:40px 24px;text-align:center;color:var(--mute)}
 .breve h2{color:var(--ink);margin-bottom:8px}
 @media(max-width:860px){.caixa{grid-template-columns:minmax(0,1fr)}.comanda{position:static}}
@@ -373,7 +378,7 @@ body[data-mod=man] main{--ink:#fff;--mute:rgb(255 255 255 / .8);--line:rgb(255 2
         <div class="kpi"><span>Repasse aos produtores</span><b id="k-prod">—</b></div>
         <div class="kpi"><span>Itens vendidos</span><b id="k-it">—</b></div>
       </div>
-      <table class="stack"><thead><tr><th>Produto</th><th>Produtor</th><th>Cliente</th><th class="n">Qtd</th><th class="n">Total</th><th></th></tr></thead><tbody id="ult"><tr><td colspan="6" class="vazio">Carregando…</td></tr></tbody></table>
+      <div class="vgr" id="ult"><p class="vazio">Carregando…</p></div>
     </section>
     </div>
     <div data-sv="vendas" hidden>
@@ -391,7 +396,7 @@ body[data-mod=man] main{--ink:#fff;--mute:rgb(255 255 255 / .8);--line:rgb(255 2
       <div class="kpi"><span>Repasse aos produtores</span><b id="vk-prod">—</b></div>
       <div class="kpi"><span>Itens vendidos</span><b id="vk-it">—</b></div>
     </div>
-    <table class="stack"><thead><tr><th>Data</th><th>Produto</th><th>Produtor</th><th>Cliente</th><th>Evento</th><th>Pagamento</th><th class="n">Qtd</th><th class="n">Total</th><th></th></tr></thead><tbody id="vd-list"><tr><td colspan="9" class="vazio">Carregando…</td></tr></tbody></table>
+    <div class="vgr" id="vd-list"><p class="vazio">Carregando…</p></div>
     <p class="status" id="vd-nota" style="margin-top:10px"></p>
     </div>
     <div data-sv="porprodutor" hidden>
@@ -527,7 +532,7 @@ function erroTxt(e){switch(e&&e.code){
 /* Produtos */
 function renderChips(){const ps=["TODOS",...new Set(produtos.map(p=>p.prod))];
   $("chips").innerHTML=ps.map(p=>`<button aria-pressed="${p===filtro}" data-p="${esc(p)}">${p==="TODOS"?"Todos":esc(cap(p))}</button>`).join("")}
-const cap=s=>String(s).toLowerCase().replace(/(^|\s)\S/g,c=>c.toUpperCase());
+const cap=s=>String(s).toLowerCase().replace(/(^|\s)\S/g,c=>c.toUpperCase()).replace(/ (De|Da|Do|Das|Dos|E|Com|A|Em|Para|Sem) /g,m=>m.toLowerCase());
 function renderGrid(){const q=$("busca").value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
   const vq={};for(const v of vendas){const k=sem(v.nome);vq[k]=(vq[k]||0)+v.q}
   const lista=produtos.filter(p=>(filtro==="TODOS"||p.prod===filtro)&&(!q||p.key.includes(q)))
@@ -582,9 +587,9 @@ let enviando=false;
 $("d-ok").addEventListener("click",()=>registrar());
 async function registrar(){if(enviando||!cart.length||!mcp)return;enviando=true;$("d-ok").disabled=true;$("dlg").classList.remove("on");$("go").disabled=true;$("go").textContent="Registrando…";
   const ev=$("evento").value,cli=$("cliente").value.trim().toUpperCase(),d=hoje();
-  const rows=cart.map(c=>{const{p,t,vp,vf}=linha(c);return[d,"SAIDA",p.nome,c.q,c.vu,t,p.prod,vp,vf,p.prod==="FAZENDA"?"—":"",cli,ev,forma]});
+  const vid="V"+Date.now().toString(36).toUpperCase(),rows=cart.map(c=>{const{p,t,vp,vf}=linha(c);return[d,"SAIDA",p.nome,c.q,c.vu,t,p.prod,vp,vf,p.prod==="FAZENDA"?"—":"",cli,ev,forma,vid]});
   const T0=rows.reduce((s,r)=>s+r[5],0),fm=forma;
-  try{await mcp.callTool(SRV,"append_values",{spreadsheetId:SHEET,range:"'ENTRADAS E SAIDAS'!B3:N3",values:rows},{cache:false});
+  try{await mcp.callTool(SRV,"append_values",{spreadsheetId:SHEET,range:"'ENTRADAS E SAIDAS'!B3:O3",values:rows},{cache:false});
     if(fm==="DINHEIRO"){try{await lancarCaixa("ENTRADA",`Venda lojinha${cli?" — "+cli:""}: `+rows.map(r=>r[3]+" "+r[2]).join(", "),T0,ev)}
       catch(e){msg("Venda registrada, mas não entrou no CAIXA DINHEIRO: "+erroTxt(e)+" Lance à mão no caixa.","err");cart=[];renderCart();renderGrid();carregarVendas();enviando=false;$("d-ok").disabled=false;$("go").textContent=forma==="PIX"?"Cobrar no Pix":"Recebi em dinheiro, registrar";return}}
     const fal=await baixarEstoque(rows.map(r=>({nome:r[2],q:r[3]})),1);
@@ -1051,16 +1056,18 @@ $("fg-box").addEventListener("click",e=>{const a=e.target.closest("[data-ano]"),
   else if(s){fg.aba=s.dataset.aba;for(const x of s.parentNode.children)x.toggleAttribute("aria-current",x===s);s.setAttribute("aria-current","page");verAba($("fg-aba"),fg.pl.id,fg.aba,cap(fg.aba),fg.pl.url)}},true);
 
 /* Excluir venda */
-async function delClick(e){const b=e.target.closest(".del");if(!b||!mcp)return;
+async function delClick(e){const b=e.target.closest(".del");if(!b||!mcp||!b.dataset.rows)return;
   if(!b.classList.contains("conf")){b.classList.add("conf");b.textContent="Confirmar?";setTimeout(()=>{if(b.isConnected&&!b.disabled){b.classList.remove("conf");b.textContent="Excluir"}},5000);return}
-  const row=+b.dataset.row,v=vendas.find(x=>x.row===row);if(!v)return;b.disabled=true;b.textContent="Excluindo…";
-  try{const r=(await ler(`'ENTRADAS E SAIDAS'!B${row}:N${row}`))[0]||[];
-    if(String(r[2])!==String(v.nome)||num(r[5])!==v.t||String(r[1]).toUpperCase()!=="SAIDA"){msg("A planilha mudou desde que abri. Recarreguei as vendas, tente de novo.","err");carregarVendas();return}
-    await mcp.callTool(SRV,"update_spreadsheet",{spreadsheetId:SHEET,requests:[{deleteDimension:{range:{sheetId:0,dimension:"ROWS",startIndex:row-1,endIndex:row}}}]},{cache:false});
-    if(v.forma==="DINHEIRO"){try{await lancarCaixa("SAIDA",`ESTORNO VENDA EXCLUÍDA: ${v.q} ${v.nome}${v.cli?" — "+v.cli:""}`,v.t,v.ev)}catch(err){msg("Venda excluída, mas o estorno não entrou no CAIXA DINHEIRO: "+erroTxt(err),"err")}}
-    await baixarEstoque([{nome:v.nome,q:v.q}],-1);
-    msg(`Venda excluída: ${v.q} ${cap(v.nome)} (${brl(v.t)}). O estoque voltou.`,"ok");carregarVendas()
-  }catch(err){msg(erroTxt(err)+" Confira na planilha se a linha saiu.","err");carregarVendas()}}
+  const rows=b.dataset.rows.split(",").map(Number),vs=rows.map(r=>vendas.find(x=>x.row===r));if(vs.some(v=>!v))return;b.disabled=true;b.textContent="Excluindo…";
+  try{const a=Math.min(...rows),z=Math.max(...rows),rs=await ler(`'ENTRADAS E SAIDAS'!B${a}:N${z}`);
+    for(const v of vs){const r=rs[v.row-a]||[];if(String(r[2])!==String(v.nome)||num(r[5])!==v.t||String(r[1]).toUpperCase()!=="SAIDA"){msg("A planilha mudou desde que abri. Recarreguei as vendas, tente de novo.","err");carregarVendas();return}}
+    const req=rows.slice().sort((x,y)=>y-x).map(r=>({deleteDimension:{range:{sheetId:0,dimension:"ROWS",startIndex:r-1,endIndex:r}}}));
+    await mcp.callTool(SRV,"update_spreadsheet",{spreadsheetId:SHEET,requests:req},{cache:false});
+    const T=vs.reduce((s,v)=>s+v.t,0),v0=vs[0];
+    if(v0.forma==="DINHEIRO"){try{await lancarCaixa("SAIDA",`ESTORNO VENDA EXCLUÍDA: ${vs.map(v=>v.q+" "+v.nome).join(", ")}${v0.cli?" — "+v0.cli:""}`,T,v0.ev)}catch(err){msg("Venda excluída, mas o estorno não entrou no CAIXA DINHEIRO: "+erroTxt(err),"err")}}
+    await baixarEstoque(vs.map(v=>({nome:v.nome,q:v.q})),-1);
+    msg(`Venda excluída (${brl(T)}). O estoque voltou.`,"ok");carregarVendas()
+  }catch(err){msg(erroTxt(err)+" Confira na planilha se as linhas saíram.","err");carregarVendas()}}
 $("ult").addEventListener("click",delClick);$("vd-list").addEventListener("click",delClick);
 /* Aba Vendas */
 const sem=s=>String(s||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
@@ -1072,10 +1079,15 @@ function renderVendas(){
   const vs=vendas.filter(v=>(!ev||v.ev===ev)&&(!pr||String(v.prod).toUpperCase()===pr)&&(!fp||v.forma===fp)&&(!q||sem(v.nome+" "+v.cli).includes(q)));
   let T=0,F=0,P=0,I=0;for(const v of vs){T+=v.t;F+=v.vf;P+=v.vp;I+=v.q}
   $("vk-tot").textContent=brl(T);$("vk-faz").textContent=brl(F);$("vk-prod").textContent=brl(P);$("vk-it").textContent=I;
-  const mostra=vs.slice().reverse().slice(0,300);
-  $("vd-list").innerHTML=mostra.length?mostra.map(v=>`<tr><td>${esc(v.data)}</td><td>${esc(cap(v.nome))}</td><td>${esc(cap(v.prod))}</td><td>${esc(cap(v.cli))}</td><td>${esc(cap(v.ev))}</td><td>${v.forma?esc(cap(v.forma)):"—"}</td><td class="n">${v.q}</td><td class="n">${brl(v.t)}</td><td class="n"><button class="btn del" data-row="${v.row}">Excluir</button></td></tr>`).join("")
-    :`<tr><td colspan="9" class="vazio">Nenhuma venda com esses filtros.</td></tr>`;
-  $("vd-nota").textContent=vs.length>300?`Mostrando as 300 mais recentes de ${vs.length}. Os totais somam todas.`:`${vs.length} ${vs.length===1?"lançamento":"lançamentos"}. Vendas antigas não têm forma de pagamento registrada.`}
+  const rowsOk=new Set(vs.map(v=>v.row)),gs=agrupar(vendas).filter(g=>g.itens.some(v=>rowsOk.has(v.row))),mostra=gs.slice().reverse().slice(0,150);
+  $("vd-list").innerHTML=mostra.length?mostra.map(g=>cartaoVenda(g,true,pr)).join(""):`<p class="vazio">Nenhuma venda com esses filtros.</p>`;
+  $("vd-nota").textContent=(gs.length>150?`Mostrando as 150 vendas mais recentes de ${gs.length}. Os totais somam todas. `:`${gs.length} ${gs.length===1?"venda":"vendas"}. `)+"Nas vendas antigas sem nome do cliente, cada produto aparece separado."}
+function agrupar(vs){const gs=[];for(const v of vs){const k=v.id?"id:"+v.id:v.cli?[v.data,v.cli,v.ev,v.forma].join("|"):"r"+v.row,g=gs[gs.length-1];
+    if(g&&g.k===k&&(v.id||v.row===g.itens[g.itens.length-1].row+1)){g.itens.push(v);g.t+=v.t}else gs.push({k,itens:[v],t:v.t,data:v.data,cli:v.cli,ev:v.ev,forma:v.forma})}return gs}
+function cartaoVenda(g,info,pr){const d=String(g.data).slice(0,5);
+  return`<div class="vg"><div class="vg-t"><b>${esc(g.cli?cap(g.cli):"Sem nome")}</b><span>${[d,info&&g.ev?cap(g.ev):"",g.forma?cap(g.forma):""].filter(Boolean).map(esc).join(" · ")}</span></div>
+  <ul>${g.itens.map(v=>`<li${pr&&String(v.prod).toUpperCase()===pr?' class="hl"':""}><span class="q">${v.q}</span><span class="nm">${esc(cap(v.nome))}</span><span class="vl">${brl(v.t)}</span></li>`).join("")}</ul>
+  <div class="vg-f"><b>Total ${brl(g.t)}</b><button class="btn del" data-rows="${g.itens.map(v=>v.row).join(",")}">Excluir</button></div></div>`}
 for(const id of["f-ev","f-pr","f-fp"])$(id).addEventListener("change",renderVendas);$("f-q").addEventListener("input",renderVendas);
 
 /* Partes por aba */
@@ -1293,18 +1305,17 @@ $("evento").addEventListener("change",renderResumo);
 function renderResumo(){const ev=$("evento").value;$("r-tit").textContent="Vendas · "+cap(ev||"");
   const vs=vendas.filter(v=>v.ev===ev);let T=0,F=0,P=0,I=0;for(const v of vs){T+=v.t;F+=v.vf;P+=v.vp;I+=v.q}
   $("k-tot").textContent=brl(T);$("k-faz").textContent=brl(F);$("k-prod").textContent=brl(P);$("k-it").textContent=I;
-  $("ult").innerHTML=vs.length?vs.slice(-12).reverse().map(v=>`<tr><td>${esc(cap(v.nome))}</td><td>${esc(cap(v.prod))}</td><td>${esc(cap(v.cli))}</td><td class="n">${v.q}</td><td class="n">${brl(v.t)}</td><td class="n"><button class="btn del" data-row="${v.row}">Excluir</button></td></tr>`).join("")
-    :`<tr><td colspan="6" class="vazio">Nenhuma venda lançada nesse evento ainda.</td></tr>`}
-async function carregarVendas(){try{const rs=await ler("'ENTRADAS E SAIDAS'!B4:M3000");
-  vendas=rs.map((r,i)=>({r,row:4+i})).filter(x=>String(x.r[1]).toUpperCase()==="SAIDA").map(({r,row})=>({row,data:r[0]||"",nome:r[2],q:num(r[3]),t:num(r[5]),prod:r[6]||"",vp:num(r[7]),vf:num(r[8]),pago:String(r[9]||"").trim(),cli:r[10]||"",ev:r[11]||"",forma:String(r[12]||"").toUpperCase()}));
-  renderResumo();renderRepasses();if(produtos.length)renderGrid();if(sub==="vendas")renderVendas();if(sub==="porprodutor")renderPP();if(sub==="analise")renderAn()}catch(e){$("ult").innerHTML=`<tr><td colspan="6" class="vazio">${esc(erroTxt(e))}</td></tr>`;$("rep").innerHTML=`<p class="vazio">${esc(erroTxt(e))}</p>`}}
+  const gs=agrupar(vs);$("ult").innerHTML=gs.length?gs.slice(-8).reverse().map(g=>cartaoVenda(g,false)).join(""):`<p class="vazio">Nenhuma venda lançada nesse evento ainda.</p>`}
+async function carregarVendas(){try{const rs=await ler("'ENTRADAS E SAIDAS'!B4:O3000");
+  vendas=rs.map((r,i)=>({r,row:4+i})).filter(x=>String(x.r[1]).toUpperCase()==="SAIDA").map(({r,row})=>({row,data:r[0]||"",nome:r[2],q:num(r[3]),t:num(r[5]),prod:r[6]||"",vp:num(r[7]),vf:num(r[8]),pago:String(r[9]||"").trim(),cli:r[10]||"",ev:r[11]||"",forma:String(r[12]||"").toUpperCase(),id:String(r[13]||"")}));
+  renderResumo();renderRepasses();if(produtos.length)renderGrid();if(sub==="vendas")renderVendas();if(sub==="porprodutor")renderPP();if(sub==="analise")renderAn()}catch(e){$("ult").innerHTML=`<p class="vazio">${esc(erroTxt(e))}</p>`;$("rep").innerHTML=`<p class="vazio">${esc(erroTxt(e))}</p>`}}
 
 /* Carga inicial */
 async function iniciar(){
   mcp={callTool:async(s,t,i)=>{let r;try{r=await fetch(API,{method:"POST",body:JSON.stringify({k:senha(),tool:t,input:i})})}catch(e){throw{code:"server_unavailable",message:"Sem internet ou a planilha não respondeu."}}
     let j;try{j=await r.json()}catch(e){throw{code:"upstream_error",message:"A planilha respondeu de um jeito estranho ("+r.status+")."}}
     if(!j.ok){if(/Senha errada/.test(j.erro)){try{localStorage.removeItem("senha")}catch{}pedirSenha("Senha errada.")}throw{code:"tool_error",message:j.erro}}return{payload:j.payload}}};
-  if(!mcp){status("Sem acesso à planilha.","err");$("ult").innerHTML=`<tr><td colspan="6" class="vazio">Sem conexão com a planilha.</td></tr>`;return}
+  if(!mcp){status("Sem acesso à planilha.","err");$("ult").innerHTML=`<p class="vazio">Sem conexão com a planilha.</p>`;return}
   try{await carregarBase();status(`Conectado à planilha LOJINHA · ${produtos.length} produtos`,"ok");carregarVendas();carregarCaixa();carregarEstoque().catch(()=>{})}catch(e){status(erroTxt(e),"err")}}
 async function carregarBase(){const [pr,ev,fo]=await Promise.all([ler("PRODUTOS!B3:F200"),ler("EVENTOS!B3:D100"),ler("FORNECEDORES!B3:I200")]);fornec={};
     for(const r of fo){const k=String(r[6]||"").trim().toUpperCase();if(k)fornec[k]={marca:r[0]||"",rep:r[1]||"",pix:r[4]||"",cel:r[5]||""}}
